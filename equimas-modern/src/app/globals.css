@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+
+  --color-primary: #d32f2f;
+  --color-primary-light: #ff6659;
+  --color-primary-dark: #9a0007;
+
+  --color-apple-bg: #f5f5f7;
+  --color-apple-text: #1d1d1f;
+  --color-apple-muted: #86868b;
+
+  --radius-apple: 12px;
+  --radius-apple-lg: 20px;
+
+  --shadow-apple: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+@layer base {
+  body {
+    @apply bg-apple-bg text-apple-text antialiased;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02";
+  }
+
+  /* Hide Scrollbar for a premium look */
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/72 backdrop-blur-xl border border-white/10;
+  }
+
+  .animate-in {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+/* Lenis CSS */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}

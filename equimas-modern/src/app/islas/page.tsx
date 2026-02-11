@@ -25,19 +25,19 @@ export default function IslasPage() {
                                 title="Isla Rectangular"
                                 description="Módulo clásico con múltiples niveles de exhibición."
                                 href="/contacto"
-                                imageUrl="/images/systems/islas/1.jpg"
+                                imageUrl="/images/systems/islas/ZH002.jpg"
                             />
                             <CategoryCard
                                 title="Isla Circular"
                                 description="Diseño dinámico que facilita la circulación."
                                 href="/contacto"
-                                imageUrl="/images/systems/islas/2.jpg"
+                                imageUrl="/images/systems/islas/IST.jpg"
                             />
                             <CategoryCard
                                 title="Módulos Acoplables"
                                 description="Configure su espacio según la necesidad del momento."
                                 href="/contacto"
-                                imageUrl="/images/systems/islas/3.jpg"
+                                imageUrl="/images/systems/islas/ZH009-A.jpg"
                             />
                         </div>
 

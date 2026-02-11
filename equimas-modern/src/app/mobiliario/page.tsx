@@ -25,13 +25,13 @@ export default function MobiliarioPage() {
                                 title="Percheros de Pie"
                                 description="Diseños versátiles para destacar prendas en áreas centrales."
                                 href="/percheros"
-                                imageUrl="/images/systems/percheros/1.jpg"
+                                imageUrl="/images/systems/percheros/FZD-G.jpg"
                             />
                             <CategoryCard
                                 title="Islas de Exhibición"
                                 description="Módulos centrales que optimizan el flujo de la tienda."
                                 href="/islas"
-                                imageUrl="/images/systems/islas/1.jpg"
+                                imageUrl="/images/systems/islas/ZH002.jpg"
                             />
                             <CategoryCard
                                 title="Mostradores"
@@ -78,8 +78,8 @@ export default function MobiliarioPage() {
                                     </Link>
                                 </div>
                                 <div className="grid grid-cols-2 gap-4">
-                                    <img src="/images/systems/mobiliario-piso/2.jpg" alt="Mobiliario 1" className="rounded- apple shadow-lg" />
-                                    <img src="/images/systems/mobiliario-piso/3.jpg" alt="Mobiliario 2" className="rounded-apple shadow-lg translate-y-8" />
+                                    <img src="/images/systems/mobiliario-piso/BM1.jpg" alt="Mobiliario 1" className="rounded-apple shadow-lg" />
+                                    <img src="/images/systems/mobiliario-piso/BL1.jpg" alt="Mobiliario 2" className="rounded-apple shadow-lg translate-y-8" />
                                 </div>
                             </div>
                         </div>

@@ -43,19 +43,19 @@ export default function VariosPage() {
                                 title="Espejos para Calzado"
                                 description="Inclinación regulable y base antideslizante."
                                 href="/contacto"
-                                imageUrl="/images/systems/varios/1.jpg"
+                                imageUrl="/images/systems/varios/MVB.jpg"
                             />
                             <CategoryCard
                                 title="Porta Precios"
                                 description="Variedad de formatos para una comunicación clara."
                                 href="/contacto"
-                                imageUrl="/images/systems/varios/2.jpg"
+                                imageUrl="/images/systems/varios/MDC.jpg"
                             />
                             <CategoryCard
                                 title="Pufs y Taburetes"
                                 description="Confort para el sector de calzado."
                                 href="/contacto"
-                                imageUrl="/images/systems/varios/3.jpg"
+                                imageUrl="/images/systems/varios/CML.jpg"
                             />
                         </div>
 

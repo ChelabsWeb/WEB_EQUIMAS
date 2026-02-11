@@ -25,19 +25,19 @@ export default function PercherosPage() {
                                 title="Perchero Regulable"
                                 description="Ajuste de altura para distintos tipos de prendas."
                                 href="/contacto"
-                                imageUrl="/images/systems/percheros/1.jpg"
+                                imageUrl="/images/systems/percheros/FZD-G.jpg"
                             />
                             <CategoryCard
                                 title="Perchero con Ruedas"
                                 description="Máxima movilidad para reorganizar su tienda rápidamente."
                                 href="/contacto"
-                                imageUrl="/images/systems/percheros/2.jpg"
+                                imageUrl="/images/systems/percheros/ZH003.jpg"
                             />
                             <CategoryCard
                                 title="Perchero Doble Barra"
                                 description="Duplique su capacidad de exhibición en el mismo espacio."
                                 href="/contacto"
-                                imageUrl="/images/systems/percheros/3.jpg"
+                                imageUrl="/images/systems/percheros/PEC.jpg"
                             />
                         </div>
 
@@ -65,7 +65,7 @@ export default function PercherosPage() {
                                     </ul>
                                 </div>
                                 <div className="rounded-apple overflow-hidden shadow-2xl">
-                                    <img src="/images/systems/percheros/1.jpg" alt="Perchero Técnico" className="w-full h-full object-cover" />
+                                    <img src="/images/systems/percheros/PCP.jpg" alt="Perchero Técnico" className="w-full h-full object-cover" />
                                 </div>
                             </div>
                         </div>

@@ -29,9 +29,9 @@ export default function Home() {
           <HorizontalSlider categories={[
             { id: 'equipamiento', title: 'Equipamiento', description: 'Arquitectura comercial y sistemas de exhibición.', image: '/images/equipamiento.jpg', href: '/equipamiento' },
             { id: 'maniquies', title: 'Maniquíes', description: 'Selección premium para resaltar sus colecciones.', image: '/images/maniquies.jpg', href: '/maniquies' },
-            { id: 'puc', title: 'Sistemas PUC', description: 'Puntos de anclaje con tecnología ZAMAC.', image: '/images/maniquies.jpg', href: '/sistemas' },
+            { id: 'puc', title: 'Sistemas PUC', description: 'Puntos de anclaje con tecnología ZAMAC.', image: '/images/systems/sistema-g/g1.jpg', href: '/sistemas' },
             { id: 'mobiliario', title: 'Mobiliario', description: 'Muebles a medida con acabados tecnológicos.', image: '/images/mobiliario.jpg', href: '/mobiliario' },
-            { id: 'sistemas', title: 'Sistemas Técnicos', description: 'Línea de alto porte estructural en aluminio.', image: '/images/hero.jpg', href: '/sistemas' },
+            { id: 'sistemas', title: 'Sistemas Técnicos', description: 'Línea de alto porte estructural en aluminio.', image: '/images/systems/sistema-d/d1.jpg', href: '/sistemas' },
           ]} />
         </section>
 

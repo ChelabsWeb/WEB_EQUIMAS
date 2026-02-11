@@ -94,6 +94,24 @@ export default function PortfolioPage() {
                         </div>
                     </div>
                 </section>
+                <section className="bg-apple-bg py-24 border-t border-apple-bg">
+                    <div className="container mx-auto px-6">
+                        <div className="text-center mb-16">
+                            <h2 className="text-4xl font-bold text-apple-text tracking-tight mb-4">Empresas que <span className="text-primary">confían</span> en nosotros</h2>
+                            <p className="text-apple-muted max-w-2xl mx-auto">Más de 20 años acompañando el crecimiento de las marcas líderes en el mercado.</p>
+                        </div>
+                        <div className="flex flex-wrap justify-center items-center gap-12 opacity-50 grayscale hover:grayscale-0 transition-all duration-700">
+                            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "babolat"].map((id) => (
+                                <img
+                                    key={id}
+                                    src={`/images/clientes/${id}.jpg`}
+                                    alt="Cliente Equimas"
+                                    className="h-12 w-auto object-contain hover:scale-110 transition-transform cursor-pointer"
+                                />
+                            ))}
+                        </div>
+                    </div>
+                </section>
             </main>
             <Footer />
         </>

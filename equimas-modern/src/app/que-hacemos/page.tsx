@@ -90,8 +90,8 @@ export default function QueHacemosPage() {
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                             <div>
                                 <img
-                                    src="/images/hero.jpg"
-                                    alt="Manufacturing"
+                                    src="/images/nosotros/2.jpg"
+                                    alt="Nuestra Planta"
                                     className="rounded-apple-lg shadow-2xl grayscale hover:grayscale-0 transition-all duration-1000"
                                 />
                             </div>

@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import gsap from 'gsap';
-
 import Image from 'next/image';
 
 const navItems = [
@@ -15,7 +14,6 @@ const navItems = [
     { name: 'Maniquíes', href: '/maniquies' },
     { name: 'Mobiliario', href: '/mobiliario' },
     { name: 'Portfolio', href: '/portfolio' },
-    { name: 'Contacto', href: '/contacto' },
 ];
 
 export default function Header() {
@@ -54,76 +52,64 @@ export default function Header() {
     return (
         <header
             className={cn(
-                'fixed top-0 z-50 w-full transition-all duration-300',
-                scrolled ? 'py-3' : 'py-6'
+                'fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-6xl z-50 transition-all duration-500',
+                scrolled ? 'top-4 scale-[0.98]' : 'top-6 scale-100'
             )}
         >
-            <div className="mx-auto max-w-7xl px-6">
-                <div
-                    className={cn(
-                        'flex items-center justify-between rounded-full px-8 py-3 transition-all duration-500',
-                        scrolled ? 'glass shadow-apple border border-white/20' : 'bg-transparent'
-                    )}
-                >
-                    {/* Column 1: Logo */}
-                    <div className="flex flex-1 items-center justify-start">
-                        <Link href="/" className="flex items-center transition-transform hover:scale-105 active:scale-95">
-                            <Image
-                                src="/logo.png"
-                                alt="Equimas Logo"
-                                width={140}
-                                height={35}
-                                className="h-7 w-auto md:h-9 mix-blend-multiply"
-                                priority
-                            />
-                        </Link>
-                    </div>
-
-                    {/* Column 2: Navigation (Centered) */}
-                    <nav className="hidden items-center gap-10 lg:flex">
-                        {navItems.slice(0, -1).map((item) => (
-                            <Link
-                                key={item.name}
-                                href={item.href}
-                                className="relative text-[13px] font-bold tracking-tight text-apple-text/70 transition-all hover:text-primary group"
-                            >
-                                {item.name}
-                                <span className="absolute -bottom-1 left-0 h-[1.5px] w-0 bg-primary transition-all duration-300 group-hover:w-full" />
-                            </Link>
-                        ))}
-                    </nav>
-
-                    {/* Column 3: CTA & Actions */}
-                    <div className="hidden flex-1 items-center justify-end md:flex">
-                        <Link
-                            href="/contacto"
-                            className="rounded-full bg-primary px-6 py-2.5 text-[13px] font-bold text-white shadow-lg shadow-primary/20 transition-all hover:bg-primary-dark hover:scale-105 active:scale-95"
-                        >
-                            Contacto
-                        </Link>
-                    </div>
-
-                    {/* Mobile Toggle */}
-                    <div className="flex flex-1 justify-end lg:hidden">
-                        <button
-                            className="flex items-center justify-center rounded-full p-2 hover:bg-black/5"
-                            onClick={() => setIsOpen(!isOpen)}
-                        >
-                            {isOpen ? <X size={24} /> : <Menu size={24} />}
-                        </button>
-                    </div>
+            <nav className="bg-white rounded-full px-8 py-2 flex items-center justify-between border border-zinc-200 shadow-2xl">
+                <div className="flex items-center">
+                    <Link href="/" className="relative flex items-center">
+                        <Image
+                            src="/logo-equimas.png"
+                            alt="Equimas Logo"
+                            width={160}
+                            height={45}
+                            className="h-10 w-auto pt-2"
+                            priority
+                        />
+                    </Link>
                 </div>
-            </div>
+
+                {/* Desktop Navigation */}
+                <div className="hidden md:flex items-center gap-8">
+                    {navItems.map((item) => (
+                        <Link
+                            key={item.name}
+                            href={item.href}
+                            className="text-sm font-normal text-black/80 hover:text-[#E32A26] transition-colors"
+                        >
+                            {item.name}
+                        </Link>
+                    ))}
+                </div>
+
+                {/* CTA & Mobile Toggle */}
+                <div className="flex items-center gap-4">
+                    <Link
+                        href="/contacto"
+                        className="hidden md:block bg-[#E32A26] hover:bg-red-700 text-white text-sm font-medium px-6 py-2 rounded-full transition-all hover:scale-105 active:scale-95 shadow-lg shadow-[#E32A26]/20"
+                    >
+                        Contacto
+                    </Link>
+
+                    <button
+                        className="flex items-center justify-center rounded-full p-2 hover:bg-black/5 dark:hover:bg-white/5 md:hidden"
+                        onClick={() => setIsOpen(!isOpen)}
+                    >
+                        {isOpen ? <X size={24} /> : <Menu size={24} />}
+                    </button>
+                </div>
+            </nav>
 
             {/* Mobile Menu Overlay */}
             <div
                 className={cn(
-                    'mobile-menu fixed inset-0 z-[60] flex flex-col bg-white/95 backdrop-blur-2xl p-8 md:hidden translate-x-full',
+                    'mobile-menu fixed inset-0 z-[60] flex flex-col bg-zinc-950/95 backdrop-blur-2xl p-8 md:hidden translate-x-full',
                 )}
             >
                 <div className="flex justify-end">
-                    <button onClick={() => setIsOpen(false)} className="p-2 rounded-full hover:bg-black/5 transition-colors">
-                        <X size={32} />
+                    <button onClick={() => setIsOpen(false)} className="p-2 rounded-full hover:bg-white/10 transition-colors">
+                        <X size={32} className="text-white" />
                     </button>
                 </div>
                 <nav className="mt-16 flex flex-col gap-8">
@@ -131,16 +117,16 @@ export default function Header() {
                         <Link
                             key={item.name}
                             href={item.href}
-                            className="mobile-nav-item text-4xl font-bold tracking-tighter text-apple-text hover:text-primary transition-colors"
+                            className="mobile-nav-item text-4xl font-black tracking-tighter uppercase text-white hover:text-[#E32A26] transition-colors"
                             onClick={() => setIsOpen(false)}
                         >
                             {item.name}
                         </Link>
                     ))}
-                    <div className="mobile-nav-item mt-8 pt-8 border-t border-apple-bg">
+                    <div className="mobile-nav-item mt-8 pt-8 border-t border-white/10">
                         <Link
                             href="/contacto"
-                            className="inline-block rounded-full bg-primary px-10 py-5 text-xl font-bold text-white shadow-xl shadow-primary/30"
+                            className="inline-block rounded-full bg-[#E32A26] px-10 py-5 text-xl font-black uppercase tracking-widest text-white shadow-xl shadow-[#E32A26]/30"
                             onClick={() => setIsOpen(false)}
                         >
                             Contacto

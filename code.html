@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EQUIMAS | Premium Retail Solutions</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&amp;family=Playfair+Display:ital,wght@0,900;1,900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#E32A26", // The bold red from the image
+                        "background-light": "#F5F5F5",
+                        "background-dark": "#0A0A0A",
+                    },
+                    fontFamily: {
+                        display: ["Outfit", "sans-serif"],
+                        serif: ["Playfair Display", "serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                        "xl": "1.5rem",
+                        "full": "9999px",
+                    },
+                },
+            },
+        };
+    </script>
+<style>
+        .hero-gradient {
+            background: radial-gradient(circle at 70% 50%, rgba(227, 42, 38, 0.15) 0%, rgba(10, 10, 10, 1) 70%);
+        }
+        .text-outline {
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+            color: transparent;
+        }
+        .letter-spacing-tightest {
+            letter-spacing: -0.05em;
+        }
+        body {
+            font-family: 'Outfit', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-gray-900 dark:text-white antialiased overflow-x-hidden">
+<header class="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-7xl z-50">
+<nav class="bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md rounded-full px-8 py-3 flex items-center justify-between border border-white/20 dark:border-white/10 shadow-2xl">
+<div class="flex items-center gap-2">
+<div class="relative group">
+<span class="text-2xl font-black tracking-tighter uppercase dark:text-white">equimas</span>
+<div class="absolute -right-2 top-1/2 -translate-y-1/2 w-8 h-[2px] bg-primary"></div>
+</div>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-xs uppercase tracking-widest font-bold hover:text-primary transition-colors" href="#">Inicio</a>
+<a class="text-xs uppercase tracking-widest font-bold hover:text-primary transition-colors" href="#">Qué Hacemos</a>
+<a class="text-xs uppercase tracking-widest font-bold hover:text-primary transition-colors" href="#">Sistemas</a>
+<a class="text-xs uppercase tracking-widest font-bold hover:text-primary transition-colors" href="#">Maniquíes</a>
+<a class="text-xs uppercase tracking-widest font-bold hover:text-primary transition-colors" href="#">Mobiliario</a>
+<a class="text-xs uppercase tracking-widest font-bold hover:text-primary transition-colors" href="#">Portfolio</a>
+</div>
+<a class="bg-primary hover:bg-red-700 text-white text-xs uppercase tracking-widest font-bold px-8 py-3 rounded-full transition-all hover:scale-105 active:scale-95 shadow-lg shadow-primary/20" href="#">
+                Contacto
+            </a>
+</nav>
+</header>
+<main class="relative min-height-screen flex flex-col justify-center items-center pt-32 pb-20 px-6 hero-gradient min-h-screen overflow-hidden">
+<div class="absolute right-[5%] top-1/2 -translate-y-1/2 w-1/3 h-[80%] opacity-40 mix-blend-screen pointer-events-none">
+<img alt="Sophisticated mannequin silhouette" class="w-full h-full object-contain filter grayscale brightness-50 contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSgk7d6QZ9YH724_4lbXqSWb_fIMxE_oPMjh-T3n3TkVkNDWNappkRmdrcKtk0OZeB2kaPC9xUlQEPic3f48RVQLpBcx_8afKwCaNXOarIcaCKgbqs4tITwr2MzvfIdSkVFmy58EANJLvW8VATUpD_L20IjR2jO7U9XRSZH_8okIpQ68V9LWGLwWWc1pHfcaqXrxULo09qwqbSszBelOOZzJ3r-eELcJhHjHFQr7XhWm23METVe6S3Bqp0taHkR4mFYvSEiv7ej-16"/>
+</div>
+<div class="relative z-10 max-w-7xl w-full text-center">
+<div class="mb-12">
+<h1 class="text-[12vw] md:text-[9rem] leading-[0.85] font-black uppercase tracking-tighter letter-spacing-tightest">
+<span class="block">Elevando el</span>
+<span class="block italic text-primary font-serif italic -mt-2 md:-mt-4">Estándar</span>
+<div class="flex items-baseline justify-center gap-4">
+<span class="block">Comercial</span>
+<span class="text-3xl md:text-5xl font-light italic text-zinc-500 font-serif lowercase">&amp; beyond.</span>
+</div>
+</h1>
+</div>
+<div class="max-w-2xl mx-auto mb-16">
+<p class="text-xl md:text-2xl text-zinc-400 font-light leading-relaxed">
+                    Equimas fusiona el diseño <span class="text-white font-bold">vanguardista</span> con la ingeniería de precisión para crear experiencias de retail que definen el futuro del mercado.
+                </p>
+</div>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+<button class="group bg-white text-black px-10 py-5 rounded-full font-bold text-lg flex items-center gap-3 hover:bg-primary hover:text-white transition-all duration-300">
+                    Explorar Sistemas
+                    <span class="material-icons transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<button class="px-10 py-5 rounded-full font-bold text-lg border border-white/20 hover:border-white transition-colors">
+                    Catálogo Premium
+                </button>
+</div>
+</div>
+<div class="absolute bottom-10 left-10 hidden xl:block">
+<div class="flex flex-col gap-1">
+<span class="text-primary text-[10px] uppercase tracking-[0.3em] font-black">V.2026</span>
+<span class="text-zinc-500 text-[10px] uppercase tracking-[0.2em]">Retail Excellence</span>
+<span class="text-zinc-500 text-[10px] uppercase tracking-[0.2em]">Global Distribution</span>
+</div>
+</div>
+<div class="absolute bottom-10 right-10 flex items-center gap-4">
+<div class="w-24 h-[1px] bg-zinc-800">
+<div class="w-1/3 h-full bg-primary"></div>
+</div>
+<span class="text-[10px] uppercase tracking-[0.3em] font-bold text-zinc-400">Scroll to Explore</span>
+</div>
+<div class="absolute left-10 top-1/2 -translate-y-1/2 flex flex-col items-center gap-12 py-10">
+<div class="w-[1px] h-20 bg-gradient-to-b from-transparent via-zinc-700 to-transparent"></div>
+<div class="rotate-90 origin-center whitespace-nowrap">
+<span class="text-[10px] uppercase tracking-[0.5em] font-medium text-zinc-600">Edition No. 01 / New Era</span>
+</div>
+<div class="w-[1px] h-20 bg-gradient-to-b from-transparent via-zinc-700 to-transparent"></div>
+</div>
+</main>
+<div class="fixed inset-0 pointer-events-none opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+<div class="fixed top-0 right-0 p-12 opacity-10">
+<span class="text-[20rem] font-black leading-none select-none">EQ</span>
+</div>
+
+</body></html>

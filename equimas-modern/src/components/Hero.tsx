@@ -5,12 +5,6 @@ import Link from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight } from 'lucide-react';
-import dynamic from 'next/dynamic';
-
-// Dynamic import for ScrollyVideo React component to avoid SSR issues
-const ScrollyVideo = dynamic(() => import('scrolly-video/dist/ScrollyVideo.esm.jsx'), {
-    ssr: false,
-});
 
 if (typeof window !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
@@ -22,109 +16,178 @@ export default function Hero() {
     const titleRef = useRef<HTMLHeadingElement>(null);
     const textRef = useRef<HTMLParagraphElement>(null);
     const btnRef = useRef<HTMLDivElement>(null);
-    const scrollyVideoRef = useRef<any>(null);
+    const videoRef = useRef<HTMLVideoElement>(null);
+    const canvasRef = useRef<HTMLCanvasElement>(null);
 
     useEffect(() => {
-        // Original GSAP Entrance Animations
-        const ctx = gsap.context(() => {
+        const video = videoRef.current;
+        const canvas = canvasRef.current;
+        if (!video || !canvas) return;
+
+        const ctx = canvas.getContext('2d', { alpha: false });
+        if (!ctx) return;
+
+        // Force video load
+        video.load();
+
+        const gsapCtx = gsap.context(() => {
+            // Entrance Animations
             const tl = gsap.timeline({
-                defaults: { ease: 'power3.out' },
-                delay: 0.2
+                defaults: { ease: 'power4.out' },
+                delay: 0.5
             });
 
-            tl.fromTo(titleRef.current,
-                { y: 50, opacity: 0 },
-                { y: 0, opacity: 1, duration: 1.2 }
+            const titleSpans = titleRef.current?.querySelectorAll('span');
+            if (titleSpans) {
+                tl.fromTo(titleSpans,
+                    { y: 150, opacity: 0, skewY: 10 },
+                    { y: 0, opacity: 1, skewY: 0, duration: 2, stagger: 0.1 }
+                );
+            }
+
+            tl.fromTo(textRef.current,
+                { opacity: 0, y: 20 },
+                { opacity: 1, y: 0, duration: 1 },
+                '-=1.5'
             )
-                .fromTo(textRef.current,
-                    { y: 30, opacity: 0 },
-                    { y: 0, opacity: 1, duration: 0.8 },
-                    '-=0.8'
-                )
                 .fromTo(btnRef.current,
-                    { y: 20, opacity: 0 },
-                    { y: 0, opacity: 1, duration: 0.6 },
-                    '-=0.4'
+                    { opacity: 0, y: 20 },
+                    { opacity: 1, y: 0, duration: 0.8 },
+                    '-=1.2'
                 );
 
-            // Manual scroll control for the video via Progress
-            // We use ScrollTrigger on the container to define the "scrubbing area"
+            // CANVAS RENDERING ENGINE
+            let rafId: number;
+            const render = () => {
+                if (video.readyState >= 2) {
+                    // Constant draw loop for better consistency than event-based
+                    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                }
+                rafId = requestAnimationFrame(render);
+            };
+            rafId = requestAnimationFrame(render);
+
+            // SCROLL SYNCHRONIZATION (Rockstar/GTA VI Style)
+            // We use a virtual target to decouple scroll speed from hardware seek speed
+            const scrollData = { currentTime: 0 };
+
             ScrollTrigger.create({
                 trigger: scrollContainerRef.current,
                 start: "top top",
                 end: "bottom bottom",
-                scrub: true,
+                scrub: 1.2, // Momentum smoothing
                 onUpdate: (self) => {
-                    // Update video progress imperatively
-                    if (scrollyVideoRef.current && scrollyVideoRef.current.setVideoPercentage) {
-                        scrollyVideoRef.current.setVideoPercentage(self.progress);
+                    if (video.duration) {
+                        const targetTime = self.progress * video.duration;
+                        // Smoothly tween the video currentTime via the proxy object
+                        gsap.to(scrollData, {
+                            currentTime: targetTime,
+                            duration: 0.1,
+                            ease: "none",
+                            onUpdate: () => {
+                                // Only update video if it's not currently busy seeking
+                                if (!video.seeking) {
+                                    video.currentTime = scrollData.currentTime;
+                                }
+                            }
+                        });
                     }
                 }
             });
+
+            const handleResize = () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            };
+            window.addEventListener('resize', handleResize);
+            handleResize();
+
+            return () => {
+                cancelAnimationFrame(rafId);
+                window.removeEventListener('resize', handleResize);
+            };
         }, scrollContainerRef);
 
         return () => {
-            ctx.revert();
+            gsapCtx.revert();
         };
     }, []);
 
     return (
-        /* The outer div defines the total scroll length (300% of viewport) */
-        <div ref={scrollContainerRef} className="relative h-[300vh] w-full bg-black">
-            {/* The section is sticky, so it stays in view while we scroll the parent */}
+        <div ref={scrollContainerRef} className="relative h-[400vh] w-full bg-[#0A0A0A]">
             <section
                 ref={heroRef}
                 className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden"
             >
-                {/* ScrollyVideo background component */}
-                <div className="absolute inset-0 z-0 opacity-60">
-                    <ScrollyVideo
-                        ref={scrollyVideoRef}
+                {/* Advanced Canvas Video Layer */}
+                <div className="absolute inset-0 z-0 opacity-40">
+                    <canvas
+                        ref={canvasRef}
+                        className="h-full w-full object-cover"
+                        style={{ willChange: 'transform' }}
+                    />
+                    {/* Hidden video source for the canvas engine */}
+                    <video
+                        ref={videoRef}
                         src="/videos/hero-cinematic.mp4"
-                        cover={true}
-                        sticky={false} // Positioning is handled by our CSS sticky
-                        full={true}
-                        useWebCodecs={true}
-                        trackScroll={false} // Disable internal scroll listeners to prevent conflicts
+                        className="hidden"
+                        muted
+                        playsInline
+                        preload="auto"
                     />
                 </div>
 
-                {/* Overlay to ensure text readability */}
-                <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40 z-10" />
+                {/* Reference-style Gradients */}
+                <div className="absolute inset-0 z-10 bg-[radial-gradient(circle_at_70%_50%,rgba(227,42,38,0.15)_0%,rgba(10,10,10,1)_70%)]" />
 
-                <div className="container relative z-30 mx-auto px-6 text-center text-white">
-                    <h1
-                        className="mx-auto max-w-4xl text-5xl font-bold leading-tight tracking-tight md:text-8xl drop-shadow-2xl"
-                        ref={titleRef}
-                    >
-                        Elevando el Estándar del <span className="text-primary">Equipamiento</span> Comercial
-                    </h1>
+                <div className="container relative z-30 mx-auto px-6 text-left flex flex-col items-start pt-[28vh] md:pt-[25vh] text-white">
+                    {/* Massive Reference-style Heading */}
+                    <div className="flex flex-col items-start select-none mb-10">
+                        <h1
+                            ref={titleRef}
+                            className="text-[10vw] md:text-[7rem] xl:text-[8.5rem] leading-[0.85] font-black uppercase tracking-tighter"
+                            style={{ letterSpacing: '-0.06em' }}
+                        >
+                            <span className="block overflow-hidden">Elevando el</span>
+                            <span className="block font-signature text-[13vw] md:text-[9.5rem] xl:text-[11.5rem] font-normal text-[#E32A26] -my-2 md:-my-5 xl:-my-8 overflow-visible normal-case leading-[0.5] z-10 relative" style={{ letterSpacing: '-0.02em', fontStyle: 'italic' }}>
+                                estándar
+                            </span>
+                            <div className="flex flex-wrap items-baseline justify-start gap-4 md:gap-6 overflow-hidden">
+                                <span className="block">Comercial</span>
+                            </div>
+                        </h1>
+                    </div>
+
                     <p
-                        className="mx-auto mt-8 max-w-2xl text-xl text-white/80 md:text-2xl drop-shadow-lg"
+                        className="mt-4 max-w-2xl text-lg md:text-xl font-light leading-relaxed text-zinc-400 drop-shadow-md text-justify"
                         ref={textRef}
                     >
-                        Creamos soluciones innovadoras y vanguardistas para espacios de retail
-                        que combinan diseño excepcional con funcionalidad superior.
+                        Fabricamos todo tipo de <span className="text-white font-bold">mobiliario comercial a medida</span>, y acorde cada necesidad, con diseños propios o elegidos por el cliente y nuestro servicio es integral, con <span className="text-white font-bold italic">entrega "llave en mano"</span> pronto para la apertura.
                     </p>
+
                     <div
-                        className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row"
+                        className="mt-10 flex flex-col items-start justify-start gap-4 sm:flex-row"
                         ref={btnRef}
                     >
                         <Link
                             href="/sistemas"
-                            className="group flex items-center gap-2 rounded-full bg-primary px-8 py-4 text-lg font-medium text-white transition-all hover:bg-primary-dark hover:scale-105"
+                            className="group bg-white text-black px-7 py-3 rounded-full font-bold text-sm flex items-center gap-2 hover:bg-[#E32A26] hover:text-white transition-all duration-300 shadow-xl"
                         >
                             Explorar Sistemas
-                            <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
+                            <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
                         </Link>
+
                         <Link
                             href="/portfolio"
-                            className="rounded-full border-2 border-primary/20 bg-transparent px-8 py-4 text-lg font-medium text-white transition-all hover:bg-primary/5"
+                            className="px-8 py-3 rounded-full font-bold text-sm text-white border border-white/10 hover:border-white/40 transition-all backdrop-blur-sm"
                         >
-                            Ver Proyectos
+                            Catálogo
                         </Link>
                     </div>
                 </div>
+
+                {/* Subtle Grain Texture Overlay */}
+                <div className="absolute inset-0 pointer-events-none opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] z-20" />
             </section>
         </div>
     );

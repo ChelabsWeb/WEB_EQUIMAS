@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
+import { Outfit, Playfair_Display, Bodoni_Moda } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
@@ -8,7 +8,21 @@ import ScrollProgress from "@/components/ScrollProgress";
 const outfit = Outfit({
   subsets: ["latin"],
   variable: "--font-outfit",
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700", "900"],
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
+  weight: ["900"],
+  style: ["normal", "italic"],
+});
+
+const bodoni = Bodoni_Moda({
+  subsets: ["latin"],
+  variable: "--font-bodoni",
+  style: ["italic"],
+  weight: ["400", "900"],
 });
 
 export const metadata: Metadata = {
@@ -36,7 +50,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" suppressHydrationWarning>
-      <body className={`${outfit.variable} font-sans antialiased text-apple-text cursor-none`}>
+      <body className={`${outfit.variable} ${playfair.variable} ${bodoni.variable} font-sans antialiased text-apple-text cursor-none`}>
         <ScrollProgress />
         <CustomCursor />
         <SmoothScroll>

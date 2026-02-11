@@ -13,28 +13,29 @@ export default function Hero() {
     const btnRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+        const ctx = gsap.context(() => {
+            const tl = gsap.timeline({
+                defaults: { ease: 'power3.out' },
+                delay: 0.2
+            });
 
-        tl.from(titleRef.current, {
-            y: 100,
-            opacity: 0,
-            duration: 1,
-            delay: 0.5,
-        })
-            .from(textRef.current, {
-                y: 40,
-                opacity: 0,
-                duration: 0.8,
-            }, '-=0.6')
-            .from(btnRef.current, {
-                y: 20,
-                opacity: 0,
-                duration: 0.6,
-            }, '-=0.4');
+            tl.fromTo(titleRef.current,
+                { y: 50, opacity: 0 },
+                { y: 0, opacity: 1, duration: 1.2 }
+            )
+                .fromTo(textRef.current,
+                    { y: 30, opacity: 0 },
+                    { y: 0, opacity: 1, duration: 0.8 },
+                    '-=0.8'
+                )
+                .fromTo(btnRef.current,
+                    { y: 20, opacity: 0 },
+                    { y: 0, opacity: 1, duration: 0.6 },
+                    '-=0.4'
+                );
+        }, containerRef);
 
-        return () => {
-            tl.kill();
-        };
+        return () => ctx.revert();
     }, []);
 
     return (
@@ -48,7 +49,7 @@ export default function Hero() {
                 <div className="absolute right-[10%] bottom-[20%] h-[25vw] w-[25vw] rounded-full bg-primary-light blur-[100px]" />
             </div>
 
-            <div className="container relative z-10 mx-auto px-6 text-center">
+            <div className="container relative z-30 mx-auto px-6 text-center">
                 <h1
                     className="mx-auto max-w-4xl text-5xl font-bold leading-tight tracking-tight md:text-8xl"
                     ref={titleRef}

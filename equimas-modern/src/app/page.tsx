@@ -1,3 +1,5 @@
+'use client';
+
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Hero from '@/components/Hero';
@@ -6,8 +8,21 @@ import Particles from '@/components/Particles';
 import HorizontalSlider from '@/components/HorizontalSlider';
 import { ArrowRight, CheckCircle2, Star } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
+import { useEffect } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export default function Home() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    // Give a small delay for the DOM to settle
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <>
       <Header />
@@ -40,11 +55,13 @@ export default function Home() {
           <div className="container mx-auto px-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
               <div className="relative order-2 lg:order-1">
-                <div className="relative z-10 overflow-hidden rounded-apple-lg shadow-2xl">
-                  <img
+                <div className="relative z-10 overflow-hidden rounded-apple-lg shadow-2xl h-[400px]">
+                  <Image
                     src="/images/hero.jpg"
                     alt="Equimas Experience"
-                    className="h-full w-full object-cover"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                   />
                 </div>
                 <div className="absolute -bottom-10 -right-10 hidden md:block rounded-apple-lg bg-surface p-8 shadow-apple max-w-xs z-20">
@@ -105,7 +122,7 @@ export default function Home() {
 
         {/* Call to Action */}
         <section className="bg-primary py-24 text-white">
-          <div className="container mx-auto px-6 text-center">
+          <div className="container relative z-30 mx-auto px-6 text-center">
             <h2 className="text-4xl font-bold tracking-tight md:text-6xl max-w-3xl mx-auto">
               ¿Listo para renovar su espacio comercial?
             </h2>

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import gsap from 'gsap';
+import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -32,13 +32,17 @@ export default function SystemCarousel({ images, className }: SystemCarouselProp
     };
 
     useEffect(() => {
-        if (!containerRef.current) return;
+        const ctx = gsap.context(() => {
+            if (!containerRef.current) return;
 
-        gsap.to(containerRef.current, {
-            x: `-${currentIndex * 100}%`,
-            duration: 0.8,
-            ease: 'expo.out',
-        });
+            gsap.to(containerRef.current, {
+                x: `-${currentIndex * 100}%`,
+                duration: 0.8,
+                ease: 'expo.out',
+            });
+        }, containerRef);
+
+        return () => ctx.revert();
     }, [currentIndex]);
 
     if (!images || images.length === 0) return null;
@@ -53,13 +57,15 @@ export default function SystemCarousel({ images, className }: SystemCarouselProp
                 {images.map((img, idx) => (
                     <div
                         key={idx}
-                        className="w-full h-full flex-shrink-0"
+                        className="w-full h-full flex-shrink-0 relative"
                         ref={el => { imagesRef.current[idx] = el; }}
                     >
-                        <img
+                        <Image
                             src={img}
                             alt={`Slide ${idx + 1}`}
-                            className="w-full h-full object-cover"
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 768px) 100vw, 80vw"
                         />
                     </div>
                 ))}

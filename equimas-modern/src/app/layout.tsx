@@ -12,8 +12,21 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Equimas | Equipamiento Comercial Moderno",
-  description: "Diseño y fabricación de mobiliario comercial a medida. Apple & Google Hybrid Aesthetic.",
+  title: "Equimas | Equipamiento Comercial Moderno y Mobiliario a Medida",
+  description: "Diseño y fabricación de mobiliario comercial de alta gama. Especialistas en equipamiento moderno para tiendas, locales y oficinas. Estética minimalista y funcional.",
+  keywords: ["mobiliario comercial", "equipamiento para tiendas", "diseño de interiores comerciales", "Equimas", "muebles a medida"],
+  openGraph: {
+    title: "Equimas | Equipamiento Comercial Moderno",
+    description: "Diseño y fabricación de mobiliario comercial de alta gama con estética minimalista.",
+    url: "https://www.equimas.com", // Ajustar URL real si existe
+    siteName: "Equimas",
+    locale: "es_UY",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  }
 };
 
 export default function RootLayout({

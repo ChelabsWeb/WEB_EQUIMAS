@@ -3,6 +3,7 @@ import Footer from '@/components/Footer';
 import CategoryCard from '@/components/CategoryCard';
 import { ChevronRight, ShoppingBag, ArrowRight, Layout } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function MobiliarioPage() {
     return (
@@ -78,8 +79,24 @@ export default function MobiliarioPage() {
                                     </Link>
                                 </div>
                                 <div className="grid grid-cols-2 gap-4">
-                                    <img src="/images/systems/mobiliario-piso/BM1.jpg" alt="Mobiliario 1" className="rounded-apple shadow-lg" />
-                                    <img src="/images/systems/mobiliario-piso/BL1.jpg" alt="Mobiliario 2" className="rounded-apple shadow-lg translate-y-8" />
+                                    <div className="relative h-64 overflow-hidden rounded-apple shadow-lg">
+                                        <Image
+                                            src="/images/systems/mobiliario-piso/BM1.jpg"
+                                            alt="Mobiliario 1"
+                                            fill
+                                            className="object-cover"
+                                            sizes="25vw"
+                                        />
+                                    </div>
+                                    <div className="relative h-64 overflow-hidden rounded-apple shadow-lg translate-y-8">
+                                        <Image
+                                            src="/images/systems/mobiliario-piso/BL1.jpg"
+                                            alt="Mobiliario 2"
+                                            fill
+                                            className="object-cover"
+                                            sizes="25vw"
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div>

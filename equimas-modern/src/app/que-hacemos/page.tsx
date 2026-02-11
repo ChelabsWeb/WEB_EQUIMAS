@@ -6,6 +6,7 @@ import { Target, Users, Zap, ShieldCheck } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Image from 'next/image';
 
 if (typeof window !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
@@ -88,11 +89,13 @@ export default function QueHacemosPage() {
                 <section className="bg-white py-24">
                     <div className="container mx-auto px-6">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-                            <div>
-                                <img
+                            <div className="relative h-[400px] md:h-[600px] overflow-hidden rounded-apple-lg shadow-2xl group">
+                                <Image
                                     src="/images/nosotros/2.jpg"
                                     alt="Nuestra Planta"
-                                    className="rounded-apple-lg shadow-2xl grayscale hover:grayscale-0 transition-all duration-1000"
+                                    fill
+                                    className="object-cover grayscale group-hover:grayscale-0 transition-all duration-1000"
+                                    sizes="(max-width: 1024px) 100vw, 50vw"
                                 />
                             </div>
                             <div className="space-y-6">

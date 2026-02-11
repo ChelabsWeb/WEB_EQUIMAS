@@ -1,25 +1,61 @@
+'use client';
+
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Facebook, Instagram, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
 
 export default function Footer() {
+    const [year, setYear] = useState<number>(2025);
+
+    useEffect(() => {
+        setYear(new Date().getFullYear());
+    }, []);
+
     return (
         <footer className="bg-white border-t border-apple-bg pt-20 pb-10">
             <div className="mx-auto max-w-7xl px-6">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
                     <div className="space-y-4">
-                        <h3 className="text-xl font-bold text-primary">EQUIMAS</h3>
+                        <Link href="/" className="inline-block">
+                            <Image
+                                src="/logo.png"
+                                alt="Equimas Logo"
+                                width={120}
+                                height={30}
+                                className="h-8 w-auto grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500 mix-blend-multiply"
+                            />
+                        </Link>
                         <p className="text-sm text-apple-muted leading-relaxed">
                             Líderes en equipamiento comercial con más de 20 años de experiencia.
                             Diseñamos espacios que inspiran y venden.
                         </p>
                         <div className="flex gap-4">
-                            <Link href="#" className="p-2 rounded-full hover:bg-apple-bg transition-colors">
+                            <Link
+                                href="https://instagram.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="p-2 rounded-full hover:bg-apple-bg transition-colors"
+                                aria-label="Instagram de Equimas"
+                            >
                                 <Instagram size={20} />
                             </Link>
-                            <Link href="#" className="p-2 rounded-full hover:bg-apple-bg transition-colors">
+                            <Link
+                                href="https://facebook.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="p-2 rounded-full hover:bg-apple-bg transition-colors"
+                                aria-label="Facebook de Equimas"
+                            >
                                 <Facebook size={20} />
                             </Link>
-                            <Link href="#" className="p-2 rounded-full hover:bg-apple-bg transition-colors">
+                            <Link
+                                href="https://linkedin.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="p-2 rounded-full hover:bg-apple-bg transition-colors"
+                                aria-label="LinkedIn de Equimas"
+                            >
                                 <Linkedin size={20} />
                             </Link>
                         </div>
@@ -71,7 +107,7 @@ export default function Footer() {
 
                 <div className="mt-20 pt-8 border-t border-apple-bg text-center">
                     <p className="text-xs text-apple-muted">
-                        © {new Date().getFullYear()} Equimas. Todos los derechos reservados.
+                        © {year} Equimas. Todos los derechos reservados.
                     </p>
                 </div>
             </div>

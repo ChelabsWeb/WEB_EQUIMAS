@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import Image from 'next/image';
 import { gsap } from 'gsap';
 import { Info, X, CheckCircle2, ChevronRight, ArrowLeftRight } from 'lucide-react';
 import { SystemDetail } from '@/lib/data';
@@ -21,13 +22,15 @@ export default function SystemFlipCard({ system, className }: SystemFlipCardProp
         const nextState = !isFlipped;
         setIsFlipped(nextState);
 
-        gsap.to(cardRef.current, {
-            rotateY: nextState ? 180 : 0,
-            duration: 0.8,
-            ease: "back.out(1.2)",
-            transformStyle: "preserve-3d",
-            perspective: 1000
-        });
+        const ctx = gsap.context(() => {
+            gsap.to(cardRef.current, {
+                rotateY: nextState ? 180 : 0,
+                duration: 0.8,
+                ease: "back.out(1.2)",
+                transformStyle: "preserve-3d",
+                perspective: 1000
+            });
+        }, cardRef);
     };
 
     return (
@@ -44,10 +47,12 @@ export default function SystemFlipCard({ system, className }: SystemFlipCardProp
                     ref={frontRef}
                     className="absolute inset-0 h-full w-full backface-hidden rounded-apple overflow-hidden shadow-apple bg-white"
                 >
-                    <img
+                    <Image
                         src={system.image}
                         alt={system.name}
-                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8">
                         <div className="flex items-center justify-between">

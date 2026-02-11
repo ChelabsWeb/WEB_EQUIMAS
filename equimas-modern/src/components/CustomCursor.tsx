@@ -8,97 +8,70 @@ export default function CustomCursor() {
 
     useEffect(() => {
         const ring = ringRef.current;
-
         if (!ring) return;
 
-        // Set initial state
-        gsap.set(ring, { xPercent: -50, yPercent: -50, opacity: 0 });
+        const ctx = gsap.context(() => {
+            // Set initial state
+            gsap.set(ring, { xPercent: -50, yPercent: -50, opacity: 0 });
 
-        const moveCursor = (e: MouseEvent) => {
-            // Show cursor on first move
-            gsap.to(ring, { opacity: 1, duration: 0.3 });
+            const moveCursor = (e: MouseEvent) => {
+                gsap.to(ring, { opacity: 1, duration: 0.3 });
+                gsap.to(ring, {
+                    duration: 0.4,
+                    x: e.clientX,
+                    y: e.clientY,
+                    ease: 'expo.out',
+                });
+            };
 
-            // Lagging move for the ring
-            gsap.to(ring, {
-                duration: 0.4,
-                x: e.clientX,
-                y: e.clientY,
-                ease: 'expo.out',
-            });
-        };
+            const handleMouseDown = () => gsap.to(ring, { scale: 0.8, duration: 0.2 });
+            const handleMouseUp = () => gsap.to(ring, { scale: 1, duration: 0.2 });
 
-        const handleMouseEnterWindow = () => {
-            gsap.to(ring, { opacity: 1, duration: 0.3 });
-        };
+            const handleMouseOver = (e: MouseEvent) => {
+                const target = e.target as HTMLElement;
+                const interactive = target.closest('a, button, select, input, .interactive');
 
-        const handleMouseLeaveWindow = () => {
-            gsap.to(ring, { opacity: 0, duration: 0.3 });
-        };
+                if (interactive) {
+                    gsap.to(ring, {
+                        scale: 1.8,
+                        backgroundColor: 'rgba(211, 47, 47, 0.1)',
+                        borderColor: 'rgba(211, 47, 47, 1)',
+                        duration: 0.3,
+                        ease: 'power2.out'
+                    });
+                }
+            };
 
-        const handleMouseDown = () => {
-            gsap.to(ring, { scale: 0.8, duration: 0.2 });
-        };
+            const handleMouseOut = (e: MouseEvent) => {
+                const target = e.target as HTMLElement;
+                const interactive = target.closest('a, button, select, input, .interactive');
 
-        const handleMouseUp = () => {
-            gsap.to(ring, { scale: 1, duration: 0.2 });
-        };
+                if (interactive) {
+                    gsap.to(ring, {
+                        scale: 1,
+                        backgroundColor: 'transparent',
+                        borderColor: 'rgba(211, 47, 47, 0.5)',
+                        duration: 0.3,
+                        ease: 'power2.out'
+                    });
+                }
+            };
 
-        // Hover effects logic
-        const handleMouseEnterInteractive = () => {
-            gsap.to(ring, {
-                scale: 1.8,
-                backgroundColor: 'rgba(211, 47, 47, 0.1)',
-                borderColor: 'rgba(211, 47, 47, 1)',
-                duration: 0.3,
-                ease: 'power2.out'
-            });
-        };
-
-        const handleMouseLeaveInteractive = () => {
-            gsap.to(ring, {
-                scale: 1,
-                backgroundColor: 'transparent',
-                borderColor: 'rgba(211, 47, 47, 0.5)',
-                duration: 0.3,
-                ease: 'power2.out'
-            });
-        };
-
-        window.addEventListener('mousemove', moveCursor);
-        window.addEventListener('mousedown', handleMouseDown);
-        window.addEventListener('mouseup', handleMouseUp);
-        document.addEventListener('mouseenter', handleMouseEnterWindow);
-        document.addEventListener('mouseleave', handleMouseLeaveWindow);
-
-        const addListeners = () => {
-            const interactiveElements = document.querySelectorAll('a, button, select, input, .interactive');
-            interactiveElements.forEach((el) => {
-                el.addEventListener('mouseenter', handleMouseEnterInteractive);
-                el.addEventListener('mouseleave', handleMouseLeaveInteractive);
-            });
-        };
-
-        addListeners();
-
-        const observer = new MutationObserver(() => {
-            addListeners();
+            window.addEventListener('mousemove', moveCursor);
+            window.addEventListener('mousedown', handleMouseDown);
+            window.addEventListener('mouseup', handleMouseUp);
+            window.addEventListener('mouseover', handleMouseOver);
+            window.addEventListener('mouseout', handleMouseOut);
         });
-        observer.observe(document.body, { childList: true, subtree: true });
 
-        return () => {
-            window.removeEventListener('mousemove', moveCursor);
-            window.removeEventListener('mousedown', handleMouseDown);
-            window.removeEventListener('mouseup', handleMouseUp);
-            document.removeEventListener('mouseenter', handleMouseEnterWindow);
-            document.removeEventListener('mouseleave', handleMouseLeaveWindow);
-            observer.disconnect();
-        };
+        return () => ctx.revert();
     }, []);
 
     return (
         <div
             ref={ringRef}
-            className="pointer-events-none fixed left-0 top-0 z-[9998] h-9 w-9 rounded-full border border-primary/50 bg-transparent"
+            className="pointer-events-none fixed left-0 top-0 z-[10000] h-9 w-9 rounded-full border border-primary/50 bg-transparent transition-opacity"
         />
     );
 }
+

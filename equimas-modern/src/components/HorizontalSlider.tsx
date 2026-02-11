@@ -22,31 +22,31 @@ export default function HorizontalSlider({ categories }: HorizontalSliderProps) 
     const triggerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        const section = sectionRef.current;
-        const trigger = triggerRef.current;
+        const ctx = gsap.context(() => {
+            const section = sectionRef.current;
+            const trigger = triggerRef.current;
 
-        if (!section || !trigger) return;
+            if (!section || !trigger) return;
 
-        const pin = gsap.fromTo(
-            section,
-            { x: 0 },
-            {
-                x: '-300vw',
-                ease: 'none',
-                duration: 1,
-                scrollTrigger: {
-                    trigger: trigger,
-                    pin: true,
-                    scrub: 1,
-                    end: () => `+=${section.offsetWidth}`,
-                    invalidateOnRefresh: true,
-                },
-            }
-        );
+            gsap.fromTo(
+                section,
+                { x: 0 },
+                {
+                    x: '-300vw',
+                    ease: 'none',
+                    duration: 1,
+                    scrollTrigger: {
+                        trigger: trigger,
+                        pin: true,
+                        scrub: 1,
+                        end: () => `+=${section.offsetWidth}`,
+                        invalidateOnRefresh: true,
+                    },
+                }
+            );
+        }, triggerRef);
 
-        return () => {
-            pin.kill();
-        };
+        return () => ctx.revert();
     }, []);
 
     return (

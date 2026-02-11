@@ -3,6 +3,7 @@ import Footer from '@/components/Footer';
 import CategoryCard from '@/components/CategoryCard';
 import { ChevronRight, Ruler, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function PercherosPage() {
     return (
@@ -64,8 +65,14 @@ export default function PercherosPage() {
                                         </li>
                                     </ul>
                                 </div>
-                                <div className="rounded-apple overflow-hidden shadow-2xl">
-                                    <img src="/images/systems/percheros/PCP.jpg" alt="Perchero Técnico" className="w-full h-full object-cover" />
+                                <div className="relative h-96 rounded-apple overflow-hidden shadow-2xl">
+                                    <Image
+                                        src="/images/systems/percheros/PCP.jpg"
+                                        alt="Perchero Técnico"
+                                        fill
+                                        className="object-cover"
+                                        sizes="(max-width: 768px) 100vw, 50vw"
+                                    />
                                 </div>
                             </div>
                         </div>

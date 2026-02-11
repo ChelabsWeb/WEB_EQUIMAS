@@ -5,6 +5,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import gsap from 'gsap';
 import { ExternalLink, ShoppingBag } from 'lucide-react';
+import Image from 'next/image';
 
 const projects = [
     { id: 1, title: "Menpi", location: "Las Piedras Shopping", category: "Retail" },
@@ -68,10 +69,12 @@ export default function PortfolioPage() {
                                     key={project.id}
                                     className="portfolio-item group relative overflow-hidden rounded-apple-lg shadow-apple bg-apple-bg aspect-[4/5]"
                                 >
-                                    <img
+                                    <Image
                                         src={`/images/portfolio/${project.id}.jpg`}
                                         alt={project.title}
-                                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                        fill
+                                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
@@ -102,12 +105,14 @@ export default function PortfolioPage() {
                         </div>
                         <div className="flex flex-wrap justify-center items-center gap-12 opacity-50 grayscale hover:grayscale-0 transition-all duration-700">
                             {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "babolat"].map((id) => (
-                                <img
-                                    key={id}
-                                    src={`/images/clientes/${id}.jpg`}
-                                    alt="Cliente Equimas"
-                                    className="h-12 w-auto object-contain hover:scale-110 transition-transform cursor-pointer"
-                                />
+                                <div key={id} className="relative h-12 w-32 grayscale hover:grayscale-0 transition-all duration-700">
+                                    <Image
+                                        src={`/images/clientes/${id}.jpg`}
+                                        alt="Cliente Equimas"
+                                        fill
+                                        className="object-contain hover:scale-110 transition-transform cursor-pointer"
+                                    />
+                                </div>
                             ))}
                         </div>
                     </div>

@@ -64,7 +64,7 @@ export default function Home() {
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
                 </div>
-                <div className="absolute -bottom-10 -right-10 hidden md:block rounded-apple-lg bg-surface p-8 shadow-apple max-w-xs z-20">
+                <div className="absolute -bottom-10 -right-10 hidden md:block rounded-apple-lg glass p-8 shadow-apple max-w-xs z-20">
                   <div className="flex items-center gap-2 mb-2 text-primary">
                     <Star size={20} fill="currentColor" />
                     <Star size={20} fill="currentColor" />

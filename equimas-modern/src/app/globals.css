@@ -10,6 +10,7 @@
   --color-apple-bg: #f5f5f7;
   --color-apple-text: #1d1d1f;
   --color-apple-muted: #86868b;
+  --color-surface: rgba(255, 255, 255, 0.82);
 
   --radius-apple: 12px;
   --radius-apple-lg: 20px;
@@ -32,7 +33,7 @@
 
 @layer utilities {
   .glass {
-    @apply bg-white/72 backdrop-blur-xl border border-white/10;
+    @apply bg-surface backdrop-blur-md border border-white/20;
   }
 
   .animate-in {

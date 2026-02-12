@@ -17,20 +17,22 @@ export default function Hero() {
     const textRef = useRef<HTMLParagraphElement>(null);
     const btnRef = useRef<HTMLDivElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
-    const canvasRef = useRef<HTMLCanvasElement>(null);
 
     useEffect(() => {
         const video = videoRef.current;
-        const canvas = canvasRef.current;
-        if (!video || !canvas) return;
-
-        const ctx = canvas.getContext('2d', { alpha: false });
-        if (!ctx) return;
+        if (!video) return;
 
         // Force video load
         video.load();
 
-        const gsapCtx = gsap.context(() => {
+        // Ensure video is ready before starting animations
+        const handleLoadedMetadata = () => {
+            // Initial frame
+            video.currentTime = 0;
+        };
+        video.addEventListener('loadedmetadata', handleLoadedMetadata);
+
+        const ctx = gsap.context(() => {
             // Entrance Animations
             const tl = gsap.timeline({
                 defaults: { ease: 'power4.out' },
@@ -56,60 +58,41 @@ export default function Hero() {
                     '-=1.2'
                 );
 
-            // CANVAS RENDERING ENGINE
-            let rafId: number;
-            const render = () => {
-                if (video.readyState >= 2) {
-                    // Constant draw loop for better consistency than event-based
-                    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-                }
-                rafId = requestAnimationFrame(render);
-            };
-            rafId = requestAnimationFrame(render);
+            // SCROLL VIDEO SYNC (Optimized for performance)
+            if (video) {
+                const videoState = { currentTime: 0 };
 
-            // SCROLL SYNCHRONIZATION (Rockstar/GTA VI Style)
-            // We use a virtual target to decouple scroll speed from hardware seek speed
-            const scrollData = { currentTime: 0 };
-
-            ScrollTrigger.create({
-                trigger: scrollContainerRef.current,
-                start: "top top",
-                end: "bottom bottom",
-                scrub: 1.2, // Momentum smoothing
-                onUpdate: (self) => {
-                    if (video.duration) {
-                        const targetTime = self.progress * video.duration;
-                        // Smoothly tween the video currentTime via the proxy object
-                        gsap.to(scrollData, {
-                            currentTime: targetTime,
-                            duration: 0.1,
-                            ease: "none",
-                            onUpdate: () => {
-                                // Only update video if it's not currently busy seeking
-                                if (!video.seeking) {
-                                    video.currentTime = scrollData.currentTime;
-                                }
-                            }
-                        });
+                ScrollTrigger.create({
+                    trigger: scrollContainerRef.current,
+                    start: "top top",
+                    end: "bottom bottom",
+                    scrub: 0.5, // Reduced scrub for responsiveness
+                    onUpdate: (self) => {
+                        if (!isNaN(video.duration)) {
+                            videoState.currentTime = self.progress * video.duration;
+                        }
                     }
-                }
-            });
+                });
 
-            const handleResize = () => {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            };
-            window.addEventListener('resize', handleResize);
-            handleResize();
+                // Use GSAP Ticker for frame-perfect updates to avoid "fighting"
+                gsap.ticker.add(() => {
+                    const currentVideo = videoRef.current;
+                    if (currentVideo && !isNaN(currentVideo.duration) && isFinite(videoState.currentTime)) {
+                        const diff = videoState.currentTime - currentVideo.currentTime;
 
-            return () => {
-                cancelAnimationFrame(rafId);
-                window.removeEventListener('resize', handleResize);
-            };
+                        if (Math.abs(diff) > 0.05) {
+                            currentVideo.currentTime += diff * 0.1;
+                        } else if (Math.abs(diff) > 0.001) {
+                            currentVideo.currentTime = videoState.currentTime;
+                        }
+                    }
+                });
+            }
         }, scrollContainerRef);
 
         return () => {
-            gsapCtx.revert();
+            ctx.revert();
+            video.removeEventListener('loadedmetadata', handleLoadedMetadata);
         };
     }, []);
 
@@ -119,18 +102,13 @@ export default function Hero() {
                 ref={heroRef}
                 className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden"
             >
-                {/* Advanced Canvas Video Layer */}
+                {/* Direct Video Layer - No Canvas for better performance */}
                 <div className="absolute inset-0 z-0 opacity-40">
-                    <canvas
-                        ref={canvasRef}
-                        className="h-full w-full object-cover"
-                        style={{ willChange: 'transform' }}
-                    />
-                    {/* Hidden video source for the canvas engine */}
                     <video
                         ref={videoRef}
                         src="/videos/hero-cinematic.mp4"
-                        className="hidden"
+                        className="h-full w-full object-cover"
+                        style={{ willChange: 'transform' }}
                         muted
                         playsInline
                         preload="auto"

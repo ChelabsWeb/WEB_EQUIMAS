@@ -13,10 +13,11 @@ import { useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+// Componente principal de la página de inicio
 export default function Home() {
   useEffect(() => {
     window.scrollTo(0, 0);
-    // Give a small delay for the DOM to settle
+    // Give a small delay for the DOM to settle kike este es el cambio por las dudas
     const timer = setTimeout(() => {
       ScrollTrigger.refresh();
     }, 100);

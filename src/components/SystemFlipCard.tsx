@@ -40,17 +40,17 @@ export default function SystemFlipCard({ system, className }: SystemFlipCardProp
 
     return (
         <div
-            className={cn("group perspective-1000 w-full cursor-pointer min-h-[500px] h-full", className)}
+            className={cn("group perspective-1000 w-full cursor-pointer min-h-[500px]", className)}
             onClick={handleFlip}
         >
             <div
                 ref={cardRef}
-                className="relative w-full min-h-[500px] h-full transition-[height] duration-500 preserve-3d"
+                className="relative grid w-full transition-[height] duration-500 preserve-3d"
             >
                 {/* Front Side */}
                 <div
                     ref={frontRef}
-                    className="absolute top-0 left-0 w-full h-[500px] backface-hidden rounded-md overflow-hidden shadow-apple bg-white"
+                    className="relative col-start-1 row-start-1 w-full h-[500px] backface-hidden rounded-md overflow-hidden shadow-apple bg-white [transform:translateZ(1px)]"
                 >
                     <Image
                         src={system.image}
@@ -78,7 +78,7 @@ export default function SystemFlipCard({ system, className }: SystemFlipCardProp
                 {/* Back Side */}
                 <div
                     ref={backRef}
-                    className="relative w-full min-h-[500px] backface-hidden rounded-md shadow-2xl bg-white p-8 [transform:rotateY(180deg)]"
+                    className="relative col-start-1 row-start-1 w-full min-h-[500px] backface-hidden rounded-md shadow-2xl bg-white p-8 [transform:rotateY(180deg)_translateZ(1px)]"
                 >
                     <div className="flex flex-col h-full min-h-[calc(500px-4rem)]">
                         <div className="flex items-start justify-between mb-6">

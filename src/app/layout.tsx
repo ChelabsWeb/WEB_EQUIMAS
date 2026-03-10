@@ -45,7 +45,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" suppressHydrationWarning>
-      <body className={`${jakarta.variable} ${greatVibes.variable} font-sans antialiased cursor-none`}>
+      <body className={`${jakarta.variable} ${greatVibes.variable} font-sans antialiased cursor-none`} suppressHydrationWarning>
         <TooltipProvider>
           <ScrollProgress />
           <CustomCursor />

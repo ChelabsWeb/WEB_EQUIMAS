@@ -65,30 +65,31 @@ export default function PortfolioPage() {
                             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                         >
                             {projects.map((project) => (
-                                <div
-                                    key={project.id}
-                                    className="portfolio-item group relative overflow-hidden rounded-md shadow-apple bg-apple-bg aspect-[4/5] transition-all hover:-translate-y-1 active:scale-[0.98]"
-                                >
-                                    <Image
-                                        src={`/images/portfolio/${project.id}.jpg`}
-                                        alt={project.title}
-                                        fill
-                                        className="object-cover transition-transform duration-700 group-hover:scale-110"
-                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                                <div key={project.id} className="portfolio-item">
+                                    <div
+                                        className="group relative overflow-hidden rounded-md shadow-apple bg-apple-bg aspect-[4/5] transition-all duration-300 hover:-translate-y-1 active:scale-[0.98]"
+                                    >
+                                        <Image
+                                            src={`/images/portfolio/${project.id}.jpg`}
+                                            alt={project.title}
+                                            fill
+                                            className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-                                    <div className="absolute inset-0 flex flex-col justify-end p-8 text-white translate-y-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                                        <span className="text-xs font-bold uppercase tracking-widest text-primary-light mb-2">
-                                            {project.category}
-                                        </span>
-                                        <h3 className="text-2xl font-bold">{project.title}</h3>
-                                        <p className="mt-1 text-sm text-white/70 italic">
-                                            {project.location}
-                                        </p>
-                                        <div className="mt-6">
-                                            <div className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-white text-primary">
-                                                <ArrowSquareOut weight="bold" size={18} />
+                                        <div className="absolute inset-0 flex flex-col justify-end p-8 text-white translate-y-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                                            <span className="text-xs font-bold uppercase tracking-widest text-primary-light mb-2">
+                                                {project.category}
+                                            </span>
+                                            <h3 className="text-2xl font-bold">{project.title}</h3>
+                                            <p className="mt-1 text-sm text-white/70 italic">
+                                                {project.location}
+                                            </p>
+                                            <div className="mt-6">
+                                                <div className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-white text-primary">
+                                                    <ArrowSquareOut weight="bold" size={18} />
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

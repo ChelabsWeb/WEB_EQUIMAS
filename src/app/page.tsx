@@ -103,12 +103,9 @@ export default function Home() {
         </section>
 
         {/* Experience Section */}
-        <section className="relative w-full py-32 bg-neutral-950 dark flex flex-col items-center overflow-hidden">
-          {/* Subtle premium glassmorphism glow acting as ambient lighting */}
-          <div className="absolute inset-0 bg-white/[0.02] backdrop-blur-3xl pointer-events-none" aria-hidden="true" />
-          
-          <div className="relative z-10 container mx-auto px-6 max-w-7xl">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+        <section className="bg-apple-bg py-24 overflow-hidden">
+          <div className="container mx-auto px-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
               <div className="relative order-2 lg:order-1">
                 <div className="relative z-10 overflow-hidden rounded-md shadow-2xl h-[400px]">
                   <Image
@@ -119,7 +116,7 @@ export default function Home() {
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
                 </div>
-                <div className="absolute -bottom-10 -right-10 hidden md:block rounded-md glass-premium p-8 max-w-xs z-20">
+                <div className="absolute -bottom-10 -right-10 hidden md:block rounded-md glass p-8 shadow-apple max-w-xs z-20">
                   <div className="flex items-center gap-2 mb-2 text-primary">
                     <Star weight="fill" size={20} />
                     <Star weight="fill" size={20} />
@@ -127,7 +124,7 @@ export default function Home() {
                     <Star weight="fill" size={20} />
                     <Star weight="fill" size={20} />
                   </div>
-                  <p className="text-sm font-medium italic text-foreground leading-relaxed">
+                  <p className="text-sm font-medium italic text-apple-text leading-relaxed">
                     "La calidad de los sistemas de Equimas transformó por completo nuestra tienda insignia en Montevideo Shopping."
                   </p>
                   <p className="mt-4 text-xs font-bold uppercase tracking-widest text-primary">
@@ -140,33 +137,32 @@ export default function Home() {
                 <div className="inline-block rounded-md bg-primary/10 px-4 py-1 text-sm font-bold tracking-wider text-primary uppercase">
                   NUESTRA EXPERIENCIA
                 </div>
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground balance">
+                <h2 className="text-4xl font-bold tracking-tight text-apple-text md:text-5xl">
                   Más de dos décadas creando espacios de éxito.
                 </h2>
-                <p className="text-lg md:text-xl text-muted-foreground leading-relaxed font-light">
+                <p className="text-lg text-apple-muted leading-relaxed">
                   EQUIMAS es una empresa con más de veinte años en plaza, adquiriendo una gran experiencia
                   en el desarrollo, creación y armado de mobiliario para equipamientos comerciales.
                 </p>
 
-                <div className="space-y-6 pt-4 text-foreground/90 text-lg font-light">
+                <div className="space-y-4 pt-4">
                   {[
                     "Servicio integral llave en mano",
                     "Diseños propios y personalizados",
                     "Tecnología de vanguardia",
                     "Respaldo y servicio post-venta"
                   ].map((text) => (
-                    <div key={text} className="flex items-center gap-4">
-                      <span className="h-[1px] w-8 bg-primary/60 shrink-0"></span>
-                      <span className="font-medium text-foreground">{text}</span>
+                    <div key={text} className="flex items-center gap-3">
+                      <CheckCircle className="text-primary" size={24} weight="fill" />
+                      <span className="font-medium text-apple-text">{text}</span>
                     </div>
                   ))}
                 </div>
 
                 <div className="pt-8">
-                  <Button asChild size="lg" className="rounded-md transition-all duration-500 ease-out hover:-translate-y-1 hover:shadow-lg active:translate-y-0 active:scale-[0.98]">
+                  <Button asChild size="lg" className="rounded-md shadow-md hover:shadow-lg transition-all duration-300">
                     <Link href="/que-hacemos">
                       Conocer Más Sobre Nosotros
-                      <ArrowRight weight="bold" className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>
                 </div>

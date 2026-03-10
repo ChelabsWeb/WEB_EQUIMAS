@@ -1,0 +1,49 @@
+"use client"
+
+import Link from 'next/link';
+import Image from 'next/image';
+import { ArrowRight } from '@phosphor-icons/react';
+import { cn } from '@/lib/utils';
+
+interface CategoryCardProps {
+    title: string;
+    description: string;
+    href: string;
+    imageUrl: string;
+    className?: string;
+}
+
+export default function CategoryCard({ title, description, href, imageUrl, className }: CategoryCardProps) {
+    return (
+        <Link
+            href={href}
+            className={cn(
+                "group relative block h-[380px] w-full overflow-hidden rounded-md shadow-apple transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl active:scale-[0.98]",
+                className
+            )}
+        >
+            <Image
+                src={imageUrl}
+                alt={title}
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+            <div className="absolute bottom-0 left-0 p-8 text-white">
+                <h3 className="text-3xl font-bold tracking-tight">{title}</h3>
+                <p className="mt-2 text-sm text-white/80 transition-all duration-500 group-hover:text-white">
+                    {description}
+                </p>
+                <div className="mt-6 flex items-center gap-2 font-medium overflow-hidden">
+                    <span className="translate-y-0 transition-transform duration-500 group-hover:-translate-y-full flex flex-col">
+                        <span>Explorar</span>
+                        <span className="text-primary-light">Descubrir más</span>
+                    </span>
+                    <ArrowRight weight="bold" size={20} className="transition-transform duration-500 group-hover:translate-x-1" />
+                </div>
+            </div>
+        </Link>
+    );
+}

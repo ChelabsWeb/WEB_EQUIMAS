@@ -86,7 +86,7 @@ export default function Header() {
 
                 {/* CTA & Mobile Toggle */}
                 <div className="flex items-center gap-4">
-                    <Button asChild className="hidden md:flex rounded-md shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-black/20">
+                    <Button asChild className="hidden md:flex rounded-md text-white shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-black/20 hover:text-white">
                         <Link href="/contacto">
                             Contacto
                         </Link>
@@ -127,7 +127,7 @@ export default function Header() {
                         <Button
                             asChild
                             size="lg"
-                            className="w-full justify-center rounded-md bg-primary px-10 py-8 text-xl font-black uppercase tracking-widest text-primary-foreground shadow-xl shadow-primary/30"
+                            className="w-full justify-center rounded-md bg-primary px-10 py-8 text-xl font-black uppercase tracking-widest text-white shadow-xl shadow-primary/30"
                         >
                             <Link href="/contacto" onClick={() => setIsOpen(false)}>
                                 Contacto

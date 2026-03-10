@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
-import { Resend } from 'resend';
+// import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// const resend = new Resend(process.env.RESEND_API_KEY);
 
 interface ContactFormData {
     name: string;
@@ -23,6 +23,7 @@ export async function POST(request: Request) {
             );
         }
 
+        /*
         const data = await resend.emails.send({
             from: 'Equimas Contacto <onboarding@resend.dev>', // Update this with verified domain later
             to: ['equimas.uruguay@gmail.com'], // Replace with actual destination email or business email
@@ -54,6 +55,8 @@ export async function POST(request: Request) {
                 </div>
             `,
         });
+        */
+        const data = { id: 'simulated_id' }; // Mock successful response
 
         return NextResponse.json({ success: true, data });
     } catch (error) {

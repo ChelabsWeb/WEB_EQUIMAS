@@ -1,6 +1,6 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import CategoryCard from '@/components/CategoryCard';
+import { FurnitureCard } from '@/components/ui/FurnitureCard';
 import { CaretRight, ShoppingBag, ArrowRight, Layout } from '@phosphor-icons/react/dist/ssr';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -23,43 +23,54 @@ export default function MobiliarioPage() {
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-                            <CategoryCard
+                            <FurnitureCard
                                 title="Percheros de Pie"
-                                description="Diseños versátiles para destacar prendas en áreas centrales."
+                                category="Sistema de Exhibición"
                                 href="/percheros"
                                 imageUrl="/images/systems/percheros/FZD-G.jpg"
+                                span="md:col-span-2 lg:col-span-1"
                             />
-                            <CategoryCard
+                            <FurnitureCard
                                 title="Islas de Exhibición"
-                                description="Módulos centrales que optimizan el flujo de la tienda."
+                                category="Módulo Central"
                                 href="/islas"
                                 imageUrl="/images/systems/islas/ZH002.jpg"
+                                span="md:col-span-1"
                             />
-                            <CategoryCard
+                            <FurnitureCard
                                 title="Mostradores"
-                                description="Puntos de venta funcionales con estética profesional."
+                                category="Punto de Venta"
                                 href="/contacto"
                                 imageUrl="/images/systems/mobiliario-piso/1.jpg"
+                                span="md:col-span-2 lg:col-span-1"
                             />
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
-                            <div className="glass p-6 rounded-md text-center">
-                                <h4 className="font-bold mb-2">Espejos</h4>
-                                <p className="text-sm text-apple-muted">Para calzado y probadores.</p>
-                            </div>
-                            <div className="glass p-6 rounded-md text-center">
-                                <h4 className="font-bold mb-2">Pufs</h4>
-                                <p className="text-sm text-apple-muted">Confort y estilo para sus clientes.</p>
-                            </div>
-                            <div className="glass p-6 rounded-md text-center">
-                                <h4 className="font-bold mb-2">Porta Precios</h4>
-                                <p className="text-sm text-apple-muted">Detalles que informan y venden.</p>
-                            </div>
-                            <div className="glass p-6 rounded-md text-center">
-                                <h4 className="font-bold mb-2">Soportes</h4>
-                                <p className="text-sm text-apple-muted">Para carteras, calzados y vidrieras.</p>
-                            </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20">
+                            <FurnitureCard
+                                title="Espejos"
+                                category="Complemento"
+                                href="/contacto"
+                                imageUrl="/images/systems/mobiliario-piso/2.jpg"
+                            />
+                            <FurnitureCard
+                                title="Pufs"
+                                category="Confort"
+                                href="/contacto"
+                                imageUrl="/images/systems/mobiliario-piso/3.jpg"
+                            />
+                            <FurnitureCard
+                                title="Porta Precios"
+                                category="Detalles"
+                                href="/contacto"
+                                imageUrl="/images/systems/mobiliario-piso/4.jpg"
+                            />
+                            <FurnitureCard
+                                title="Soportes"
+                                category="Exhibición Pequeña"
+                                href="/contacto"
+                                imageUrl="/images/systems/mobiliario-piso/5.jpg"
+                            />
                         </div>
 
                         <div className="bg-apple-bg/50 rounded-md p-12 overflow-hidden relative border border-primary/5">

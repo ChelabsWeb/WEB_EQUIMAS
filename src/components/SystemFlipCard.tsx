@@ -31,9 +31,7 @@ export default function SystemFlipCard({ system, className }: SystemFlipCardProp
             gsap.to(cardRef.current, {
                 rotateY: nextState ? 180 : 0,
                 duration: 0.8,
-                ease: "back.out(1.2)",
-                transformStyle: "preserve-3d",
-                perspective: 1000
+                ease: "back.out(1.2)"
             });
         }, cardRef);
     };
@@ -45,12 +43,12 @@ export default function SystemFlipCard({ system, className }: SystemFlipCardProp
         >
             <div
                 ref={cardRef}
-                className="relative grid w-full transition-[height] duration-500 preserve-3d"
+                className="relative w-full transition-[height] duration-500 preserve-3d"
             >
                 {/* Front Side */}
                 <div
                     ref={frontRef}
-                    className="relative col-start-1 row-start-1 w-full h-[500px] backface-hidden rounded-md overflow-hidden shadow-apple bg-white [transform:translateZ(1px)]"
+                    className="absolute top-0 left-0 w-full h-[500px] z-10 backface-hidden rounded-md overflow-hidden shadow-apple bg-white [transform:rotateY(0deg)]"
                 >
                     <Image
                         src={system.image}
@@ -78,7 +76,7 @@ export default function SystemFlipCard({ system, className }: SystemFlipCardProp
                 {/* Back Side */}
                 <div
                     ref={backRef}
-                    className="relative col-start-1 row-start-1 w-full min-h-[500px] backface-hidden rounded-md shadow-2xl bg-white p-8 [transform:rotateY(180deg)_translateZ(1px)]"
+                    className="relative w-full min-h-[500px] backface-hidden rounded-md shadow-2xl bg-white p-8 [transform:rotateY(180deg)]"
                 >
                     <div className="flex flex-col h-full min-h-[calc(500px-4rem)]">
                         <div className="flex items-start justify-between mb-6">

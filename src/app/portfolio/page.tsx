@@ -82,7 +82,7 @@ export default function PortfolioPage() {
                                             <span className="text-xs font-bold uppercase tracking-widest text-primary-light mb-2">
                                                 {project.category}
                                             </span>
-                                            <h3 className="text-2xl font-bold">{project.title}</h3>
+                                            <h3 className="text-2xl font-bold text-white">{project.title}</h3>
                                             <p className="mt-1 text-sm text-white/70 italic">
                                                 {project.location}
                                             </p>

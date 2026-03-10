@@ -39,7 +39,7 @@ export default function ProductDetailPage({ params }: PageProps) {
     initial: { opacity: 0, y: 50 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true, margin: "-100px" },
-    transition: { type: "spring", stiffness: 60, damping: 20, mass: 1 }
+    transition: { type: "spring" as const, stiffness: 60, damping: 20, mass: 1 }
   };
 
   return (
@@ -49,7 +49,7 @@ export default function ProductDetailPage({ params }: PageProps) {
       <section ref={heroRef} className="relative h-[85vh] w-full overflow-hidden">
         <motion.div 
           className="absolute inset-0 z-0 origin-top"
-          style={{ y, opacity, scale }}
+          style={{ y, opacity, scale } as any}
         >
           {/* Black gradient overlays for extreme contrast and text readability */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-black/20 z-10" />

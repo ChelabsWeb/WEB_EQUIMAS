@@ -1,6 +1,6 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { ArrowLeft, DownloadSimple, Info, CheckCircle, CaretRight } from '@phosphor-icons/react';
+import { ArrowLeft, DownloadSimple, Info, CheckCircle, CaretRight } from '@phosphor-icons/react/dist/ssr';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { systemsData } from '@/lib/data';

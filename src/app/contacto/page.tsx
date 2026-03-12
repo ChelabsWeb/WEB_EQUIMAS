@@ -46,10 +46,10 @@ export default function ContactoPage() {
     return (
         <>
             <Header />
-            <main className="flex-grow pt-32">
-                <section className="bg-white/50 backdrop-blur-sm py-20">
+            <main className="flex-grow pt-24 md:pt-32">
+                <section className="bg-white/50 backdrop-blur-sm py-16 md:py-20">
                     <div className="container mx-auto px-6">
-                        <h1 className="text-5xl font-bold tracking-tight text-apple-text md:text-7xl">
+                        <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight text-apple-text">
                             Hablemos de su <span className="text-primary">Proyecto</span>
                         </h1>
                         <p className="mt-8 text-xl text-apple-muted leading-relaxed max-w-2xl">
@@ -59,9 +59,9 @@ export default function ContactoPage() {
                     </div>
                 </section>
 
-                <section className="bg-white/30 py-12 pb-32">
+                <section className="bg-white/30 py-12 pb-20 md:pb-32">
                     <div className="container mx-auto px-6">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20">
                             {/* Info Column */}
                             <div className="space-y-12">
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
@@ -103,7 +103,7 @@ export default function ContactoPage() {
                             </div>
 
                             {/* Form Column */}
-                            <div className="glass rounded-md p-8 md:p-12 shadow-apple">
+                            <div className="glass rounded-md p-6 md:p-12 shadow-apple">
                                 {formStatus === 'success' ? (
                                     <div className="flex flex-col items-center justify-center h-full py-12 text-center">
                                         <div className="h-20 w-20 rounded-md bg-green-100 flex items-center justify-center text-green-600 mb-6">

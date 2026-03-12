@@ -43,11 +43,11 @@ export default function PortfolioPage() {
     return (
         <>
             <Header />
-            <main className="flex-grow pt-32">
-                <section className="bg-white py-20">
+            <main className="flex-grow pt-24 md:pt-32">
+                <section className="bg-white py-16 md:py-20">
                     <div className="container mx-auto px-6">
                         <div className="max-w-3xl">
-                            <h1 className="text-5xl font-bold tracking-tight text-apple-text md:text-7xl">
+                            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight text-apple-text">
                                 Portfolio de <span className="text-primary">Proyectos</span>
                             </h1>
                             <p className="mt-8 text-xl text-apple-muted leading-relaxed">
@@ -58,7 +58,7 @@ export default function PortfolioPage() {
                     </div>
                 </section>
 
-                <section className="bg-white pb-32">
+                <section className="bg-white pb-20 md:pb-32">
                     <div className="container mx-auto px-6">
                         <div
                             ref={gridRef}
@@ -98,7 +98,7 @@ export default function PortfolioPage() {
                         </div>
                     </div>
                 </section>
-                <section className="bg-apple-bg py-24 border-t border-apple-bg">
+                <section className="bg-apple-bg py-16 md:py-24 border-t border-apple-bg">
                     <div className="container mx-auto px-6">
                         <div className="text-center mb-16">
                             <h2 className="text-4xl font-bold text-apple-text tracking-tight mb-4">Empresas que <span className="text-primary">confían</span> en nosotros</h2>

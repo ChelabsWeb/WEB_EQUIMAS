@@ -51,13 +51,14 @@ export default function Header() {
     }, [isOpen]);
 
     return (
+        <>
         <header
             className={cn(
-                'fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-6xl z-50 transition-all duration-500',
+                'fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-6xl z-[999] transition-all duration-500',
                 scrolled ? 'top-4 scale-[0.98]' : 'top-6 scale-100'
             )}
         >
-            <nav className="bg-white/90 backdrop-blur-md rounded-md px-8 py-2 flex items-center justify-between border border-white/20 shadow-sm">
+            <nav className="bg-white/90 backdrop-blur-md rounded-md px-4 py-3 md:px-8 md:py-2 flex items-center justify-between border border-white/20 shadow-sm">
                 <div className="flex items-center">
                     <Link href="/" className="relative flex items-center">
                         <Image
@@ -93,49 +94,51 @@ export default function Header() {
                     </Button>
 
                     <button
-                        className="flex items-center justify-center rounded-md p-2 hover:bg-black/5 text-black md:hidden"
+                        className="flex items-center justify-center rounded-sm hover:bg-black/5 text-black md:hidden h-11 w-11 shrink-0"
                         onClick={() => setIsOpen(!isOpen)}
                     >
                         {isOpen ? <X size={24} /> : <List size={24} />}
                     </button>
                 </div>
             </nav>
-
-            {/* Mobile Menu Overlay */}
-            <div
-                className={cn(
-                    'mobile-menu fixed inset-0 z-[60] flex flex-col bg-background/90 dark:bg-black/90 backdrop-blur-3xl p-8 md:hidden translate-x-full',
-                )}
-            >
-                <div className="flex justify-end">
-                    <button onClick={() => setIsOpen(false)} className="p-2 rounded-md hover:bg-white/10 transition-colors">
-                        <X size={32} className="text-white" />
-                    </button>
-                </div>
-                <nav className="mt-16 flex flex-col gap-8">
-                    {navItems.map((item) => (
-                        <Link
-                            key={item.name}
-                            href={item.href}
-                            className="mobile-nav-item text-4xl font-black tracking-tighter uppercase text-white hover:text-primary transition-colors"
-                            onClick={() => setIsOpen(false)}
-                        >
-                            {item.name}
-                        </Link>
-                    ))}
-                    <div className="mobile-nav-item mt-8 pt-8 border-t border-white/10">
-                        <Button
-                            asChild
-                            size="lg"
-                            className="w-full justify-center rounded-md bg-primary px-10 py-8 text-xl font-black uppercase tracking-widest text-white shadow-xl shadow-primary/30"
-                        >
-                            <Link href="/contacto" onClick={() => setIsOpen(false)}>
-                                Contacto
-                            </Link>
-                        </Button>
-                    </div>
-                </nav>
-            </div>
         </header>
+
+        {/* Mobile Menu Overlay - Moved outside header to avoid stacking context issues */}
+        <div
+            className={cn(
+                'mobile-menu fixed inset-0 z-[9999] flex flex-col bg-black p-8 md:hidden translate-x-full',
+                isOpen ? 'pointer-events-auto' : 'pointer-events-none'
+            )}
+        >
+            <div className="flex justify-end">
+                <button onClick={() => setIsOpen(false)} className="p-2 rounded-md hover:bg-white/10 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center">
+                    <X size={32} className="text-white" />
+                </button>
+            </div>
+            <nav className="mt-16 flex flex-col gap-8">
+                {navItems.map((item) => (
+                    <Link
+                        key={item.name}
+                        href={item.href}
+                        className="mobile-nav-item text-3xl sm:text-4xl font-black tracking-tighter uppercase text-white hover:text-primary transition-colors"
+                        onClick={() => setIsOpen(false)}
+                    >
+                        {item.name}
+                    </Link>
+                ))}
+                <div className="mobile-nav-item mt-8 pt-8 border-t border-white/10">
+                    <Button
+                        asChild
+                        size="lg"
+                        className="w-full justify-center rounded-md bg-primary px-10 py-8 text-xl font-black uppercase tracking-widest text-white shadow-xl shadow-primary/30"
+                    >
+                        <Link href="/contacto" onClick={() => setIsOpen(false)}>
+                            Contacto
+                        </Link>
+                    </Button>
+                </div>
+            </nav>
+        </div>
+        </>
     );
 }

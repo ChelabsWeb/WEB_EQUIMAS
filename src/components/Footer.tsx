@@ -13,9 +13,9 @@ export default function Footer() {
     }, []);
 
     return (
-        <footer className="bg-background border-t border-border pt-20 pb-10">
+        <footer className="bg-background border-t border-border pt-12 md:pt-20 pb-10">
             <div className="mx-auto max-w-7xl px-6">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
                     <div className="space-y-4">
                         <Link href="/" className="inline-block relative">
                             <Image

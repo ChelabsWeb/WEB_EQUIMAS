@@ -20,10 +20,10 @@ export default function Home() {
         <Hero />
 
         {/* Solutions Section - Modern Carousel */}
-        <section className="py-24 overflow-hidden relative">
+        <section className="py-16 md:py-24 overflow-hidden relative">
           <div className="container mx-auto px-6 mb-16 relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
-              <h2 className="text-4xl font-bold tracking-tight text-foreground md:text-5xl">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground">
                 Nuestras <span className="text-primary">Soluciones</span>
               </h2>
               <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
@@ -93,19 +93,18 @@ export default function Home() {
                 ))}
               </CarouselContent>
               
-              {/* Mobile controls */}
-              <div className="flex justify-center gap-4 mt-8 md:hidden">
-                <CarouselPrevious className="relative inset-auto translate-y-0 h-12 w-12 bg-background/50 backdrop-blur-md border-white/10 hover:bg-primary hover:text-white text-foreground" />
-                <CarouselNext className="relative inset-auto translate-y-0 h-12 w-12 bg-background/50 backdrop-blur-md border-white/10 hover:bg-primary hover:text-white text-foreground" />
+              <div className="flex justify-center gap-6 mt-10 md:hidden pb-4">
+                <CarouselPrevious className="relative inset-auto translate-y-0 h-14 w-14 border border-black/10 bg-white/80 backdrop-blur-md hover:bg-primary shadow-apple text-foreground shadow-md hover:text-white transition-all [&_svg]:h-6 [&_svg]:w-6" />
+                <CarouselNext className="relative inset-auto translate-y-0 h-14 w-14 border border-black/10 bg-white/80 backdrop-blur-md hover:bg-primary shadow-apple text-foreground shadow-md hover:text-white transition-all [&_svg]:h-6 [&_svg]:w-6" />
               </div>
             </Carousel>
           </div>
         </section>
 
         {/* Experience Section */}
-        <section className="bg-apple-bg py-24 overflow-hidden">
+        <section className="bg-apple-bg py-16 md:py-24 overflow-hidden">
           <div className="container mx-auto px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
               <div className="relative order-2 lg:order-1">
                 <div className="relative z-10 overflow-hidden rounded-md shadow-2xl h-[400px]">
                   <Image
@@ -137,7 +136,7 @@ export default function Home() {
                 <div className="inline-block rounded-md bg-primary/10 px-4 py-1 text-sm font-bold tracking-wider text-primary uppercase">
                   NUESTRA EXPERIENCIA
                 </div>
-                <h2 className="text-4xl font-bold tracking-tight text-apple-text md:text-5xl">
+                <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight text-apple-text">
                   Más de dos décadas creando espacios de éxito.
                 </h2>
                 <p className="text-lg text-apple-muted leading-relaxed">
@@ -172,9 +171,9 @@ export default function Home() {
         </section>
 
         {/* Call to Action */}
-        <section className="bg-primary py-24 text-white">
+        <section className="bg-primary py-16 md:py-24 text-white">
           <div className="container relative z-30 mx-auto px-6 text-center">
-            <h2 className="text-4xl font-bold tracking-tight md:text-6xl max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold tracking-tight max-w-3xl mx-auto">
               ¿Listo para renovar su espacio comercial?
             </h2>
             <p className="mt-8 text-xl text-white/80 max-w-xl mx-auto">

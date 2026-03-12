@@ -22,11 +22,11 @@ export default function SistemasPage() {
     return (
         <>
             <Header />
-            <main className="flex-grow pt-32">
+            <main className="flex-grow pt-24 md:pt-32">
                 {/* Page Header */}
-                <section className="bg-white/50 backdrop-blur-sm py-20">
+                <section className="bg-white/50 backdrop-blur-sm py-16 md:py-20">
                     <div className="container mx-auto px-6">
-                        <h1 className="text-5xl font-bold tracking-tight text-apple-text md:text-7xl">
+                        <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight text-apple-text">
                             Catálogo de <span className="text-primary">Sistemas</span>
                         </h1>
                         <p className="mt-6 max-w-2xl text-xl text-apple-muted leading-relaxed">
@@ -42,7 +42,7 @@ export default function SistemasPage() {
                     if (catSystems.length === 0) return null;
 
                     return (
-                        <section key={cat.id} className={`py-24 ${idx % 2 === 0 ? 'bg-white/30' : 'bg-apple-bg/30'}`}>
+                        <section key={cat.id} className={`py-16 md:py-24 ${idx % 2 === 0 ? 'bg-white/30' : 'bg-apple-bg/30'}`}>
                             <div className="container mx-auto px-6">
                                 <div className="mb-12">
                                     <h2 className="text-3xl font-bold text-apple-text md:text-4xl">{cat.name}</h2>
@@ -60,10 +60,10 @@ export default function SistemasPage() {
                 })}
 
                 {/* Custom Solution CTA */}
-                <section className="bg-primary py-24 text-white overflow-hidden relative">
+                <section className="bg-primary py-16 md:py-24 text-white overflow-hidden relative">
                     <div className="absolute right-0 top-0 h-full w-1/4 bg-white/10 -skew-x-12 translate-x-1/2" />
                     <div className="container mx-auto px-6 text-center relative z-10">
-                        <h2 className="text-4xl font-bold tracking-tight md:text-6xl max-w-3xl mx-auto">
+                        <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold tracking-tight max-w-3xl mx-auto">
                             ¿No encuentra el sistema ideal?
                         </h2>
                         <p className="mt-8 text-xl text-white/80 max-w-xl mx-auto">

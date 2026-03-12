@@ -38,17 +38,17 @@ export default function SystemFlipCard({ system, className }: SystemFlipCardProp
 
     return (
         <div
-            className={cn("group perspective-1000 w-full cursor-pointer min-h-[500px]", className)}
+            className={cn("group [perspective:1000px] w-full cursor-pointer min-h-[500px]", className)}
             onClick={handleFlip}
         >
             <div
                 ref={cardRef}
-                className="relative w-full transition-[height] duration-500 preserve-3d"
+                className="relative w-full transition-[height] duration-500 [transform-style:preserve-3d]"
             >
                 {/* Front Side */}
                 <div
                     ref={frontRef}
-                    className="absolute top-0 left-0 w-full h-[500px] z-10 backface-hidden rounded-md overflow-hidden shadow-apple bg-white [transform:rotateY(0deg)]"
+                    className="absolute top-0 left-0 w-full h-[500px] z-10 [backface-visibility:hidden] rounded-md overflow-hidden shadow-apple bg-white [transform:rotateY(0deg)]"
                 >
                     <Image
                         src={system.image}
@@ -57,7 +57,7 @@ export default function SystemFlipCard({ system, className }: SystemFlipCardProp
                         className="object-cover transition-transform duration-700 group-hover:scale-110"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 md:p-8">
                         <div className="flex items-center justify-between">
                             <div>
                                 <h3 className="text-3xl font-bold text-white mb-2">{system.name}</h3>
@@ -73,11 +73,10 @@ export default function SystemFlipCard({ system, className }: SystemFlipCardProp
                     </div>
                 </div>
 
-                {/* Back Side */}
-                <div
-                    ref={backRef}
-                    className="relative w-full min-h-[500px] backface-hidden rounded-md shadow-2xl bg-white p-8 [transform:rotateY(180deg)]"
-                >
+                    <div
+                        ref={backRef}
+                        className="relative w-full min-h-[500px] [backface-visibility:hidden] rounded-md shadow-2xl bg-white p-6 md:p-8 [transform:rotateY(180deg)]"
+                    >
                     <div className="flex flex-col h-full min-h-[calc(500px-4rem)]">
                         <div className="flex items-start justify-between mb-6">
                             <div>
@@ -86,7 +85,7 @@ export default function SystemFlipCard({ system, className }: SystemFlipCardProp
                                 </span>
                                 <h3 className="text-2xl font-bold text-apple-text">{system.name}</h3>
                             </div>
-                            <button className="h-10 w-10 rounded-md bg-apple-bg flex items-center justify-center text-apple-muted hover:bg-primary/10 hover:text-primary transition-all">
+                            <button className="h-10 w-10 min-h-[44px] min-w-[44px] shrink-0 rounded-md bg-apple-bg flex items-center justify-center text-apple-muted hover:bg-primary/10 hover:text-primary transition-all">
                                 <X weight="bold" size={20} />
                             </button>
                         </div>
@@ -112,7 +111,7 @@ export default function SystemFlipCard({ system, className }: SystemFlipCardProp
                                         e.stopPropagation();
                                         setIsExpanded(!isExpanded);
                                     }}
-                                    className="text-sm font-semibold text-primary hover:text-primary/80 transition-colors uppercase tracking-wider mt-1 relative z-10"
+                                    className="text-sm font-semibold text-primary hover:text-primary/80 transition-colors uppercase tracking-wider mt-1 relative z-10 min-h-[44px] flex items-center"
                                 >
                                     {isExpanded ? "Leer menos" : "Leer más"}
                                 </button>

@@ -1,22 +1,33 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Great_Vibes } from "next/font/google";
+import { Chivo_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
 import ScrollProgress from "@/components/ScrollProgress";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
-const jakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  variable: "--font-jakarta",
-  weight: ["300", "400", "500", "600", "700", "800"],
+/**
+ * Dos familias en todo el sitio y nada más:
+ *   Switzer     — sans única (--font-sans en globals.css)
+ *   Chivo Mono  — acento técnico: eyebrows, códigos de sistema, materiales
+ * Chivo Mono además tiene el cero sin barra de fábrica.
+ */
+const switzer = localFont({
+  variable: "--font-switzer-local",
   display: "swap",
+  src: [
+    { path: "../fonts/Switzer-400.woff2", weight: "400", style: "normal" },
+    { path: "../fonts/Switzer-500.woff2", weight: "500", style: "normal" },
+    { path: "../fonts/Switzer-600.woff2", weight: "600", style: "normal" },
+    { path: "../fonts/Switzer-700.woff2", weight: "700", style: "normal" },
+  ],
 });
 
-const greatVibes = Great_Vibes({
+const chivoMono = Chivo_Mono({
   subsets: ["latin"],
-  variable: "--font-great-vibes",
-  weight: ["400"],
+  variable: "--font-chivo-mono",
+  weight: ["300", "400", "500"],
   display: "swap",
 });
 
@@ -45,7 +56,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" suppressHydrationWarning>
-      <body className={`${jakarta.variable} ${greatVibes.variable} font-sans antialiased cursor-none`} suppressHydrationWarning>
+      <body className={`${switzer.variable} ${chivoMono.variable} font-sans antialiased cursor-none`} suppressHydrationWarning>
         <TooltipProvider>
           <ScrollProgress />
           <CustomCursor />

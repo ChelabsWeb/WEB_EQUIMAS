@@ -73,7 +73,9 @@ export default function Header() {
                 </div>
 
                 {/* Desktop Navigation */}
-                <div className="hidden md:flex items-center gap-8">
+                {/* lg y no md: con 6 items + logo + CTA no entran a 768px y "Portfolio" se
+                    montaba sobre el botón de Contacto */}
+                <div className="hidden lg:flex items-center gap-8">
                     {navItems.map((item) => (
                         <Link
                             key={item.name}
@@ -87,14 +89,14 @@ export default function Header() {
 
                 {/* CTA & Mobile Toggle */}
                 <div className="flex items-center gap-4">
-                    <Button asChild className="hidden md:flex rounded-md text-white shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-black/20 hover:text-white">
+                    <Button asChild className="hidden lg:flex rounded-md text-white shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-black/20 hover:text-white">
                         <Link href="/contacto">
                             Contacto
                         </Link>
                     </Button>
 
                     <button
-                        className="flex items-center justify-center rounded-sm hover:bg-black/5 text-black md:hidden h-11 w-11 shrink-0"
+                        className="flex items-center justify-center rounded-sm hover:bg-black/5 text-black lg:hidden h-11 w-11 shrink-0"
                         onClick={() => setIsOpen(!isOpen)}
                     >
                         {isOpen ? <X size={24} /> : <List size={24} />}

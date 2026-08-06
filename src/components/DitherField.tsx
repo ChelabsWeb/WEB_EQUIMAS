@@ -116,8 +116,13 @@ export default function DitherField({ className = '' }: { className?: string }) 
         const resize = () => {
             const rect = canvas.getBoundingClientRect();
             if (!rect.width || !rect.height) return;
-            w = Math.max(1, Math.ceil(rect.width / PIXEL));
-            h = Math.max(1, Math.ceil(rect.height / PIXEL));
+            const nw = Math.max(1, Math.ceil(rect.width / PIXEL));
+            const nh = Math.max(1, Math.ceil(rect.height / PIXEL));
+            // Sin esto, cualquier cambio de alto en mobile (barra de URL, teclado)
+            // reasigna el ImageData en pleno scroll.
+            if (nw === w && nh === h) return;
+            w = nw;
+            h = nh;
             canvas.width = w;
             canvas.height = h;
             image = ctx.createImageData(w, h);

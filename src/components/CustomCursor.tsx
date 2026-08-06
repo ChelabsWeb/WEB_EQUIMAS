@@ -10,6 +10,10 @@ export default function CustomCursor() {
         const ring = ringRef.current;
         if (!ring) return;
 
+        // En touch no hay puntero que reemplazar: sin esto el anillo queda colgado
+        // en la esquina superior izquierda, porque nunca llega un mousemove.
+        if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
         const ctx = gsap.context(() => {
             // Set initial state
             gsap.set(ring, { xPercent: -50, yPercent: -50, opacity: 0 });
@@ -70,7 +74,8 @@ export default function CustomCursor() {
     return (
         <div
             ref={ringRef}
-            className="pointer-events-none fixed left-0 top-0 z-[10000] h-9 w-9 rounded-full border border-primary/50 bg-transparent transition-opacity"
+            aria-hidden="true"
+            className="pointer-events-none fixed left-0 top-0 z-[10000] h-9 w-9 rounded-full border border-primary/50 bg-transparent opacity-0 transition-opacity"
         />
     );
 }

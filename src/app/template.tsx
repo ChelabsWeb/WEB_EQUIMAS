@@ -1,24 +1,21 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 
+/**
+ * Contenedor de página.
+ *
+ * Antes esto era una transición de framer-motion que arrancaba en
+ * `opacity: 0; filter: blur(8px)`: si el rAF no corría (pestaña en segundo
+ * plano, JS lento o caído) la página entera quedaba invisible. No vale la pena
+ * arriesgar el contenido por un fade — el contenido se renderiza y punto.
+ */
 export default function Template({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  
+
   return (
-    <motion.div
-      key={pathname}
-      initial={{ opacity: 0, y: 15, filter: "blur(8px)" }}
-      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-      transition={{ 
-        duration: 0.8, 
-        ease: [0.22, 1, 0.36, 1], // Custom sophisticated easing
-        staggerChildren: 0.1 
-      }}
-      className="w-full flex-1 flex flex-col"
-    >
+    <div key={pathname} className="w-full flex-1 flex flex-col">
       {children}
-    </motion.div>
+    </div>
   );
 }

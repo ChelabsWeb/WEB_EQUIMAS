@@ -56,7 +56,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" suppressHydrationWarning>
-      <body className={`${switzer.variable} ${chivoMono.variable} font-sans antialiased cursor-none`} suppressHydrationWarning>
+      <body className={`${switzer.variable} ${chivoMono.variable} font-sans antialiased`} suppressHydrationWarning>
         <TooltipProvider>
           <ScrollProgress />
           <CustomCursor />

@@ -3,9 +3,13 @@ import { Button } from '@/components/ui/button';
 import DitherField from '@/components/DitherField';
 import { systemsData } from '@/lib/data';
 
+// min-h-svh y no min-h-screen: en iOS 100vh es la altura CON la barra de URL
+// oculta, así que al cargar, el hero queda más alto que la pantalla y empuja la
+// ficha técnica fuera de vista. svh además no cambia al colapsar la barra al
+// scrollear, así que tampoco dispara resizes del canvas en pleno scroll.
 export default function Hero() {
     return (
-        <section className="relative flex min-h-screen w-full flex-col overflow-hidden bg-[#0A0A0A] text-white">
+        <section className="relative flex min-h-svh w-full flex-col overflow-hidden bg-[#0A0A0A] text-white">
             {/* Degradado rojo de marca, dithered y en movimiento lento */}
             <div className="absolute inset-0 z-0">
                 <DitherField />

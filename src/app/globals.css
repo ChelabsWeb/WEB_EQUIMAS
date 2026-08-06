@@ -305,3 +305,10 @@ html.lenis {
 @media (prefers-reduced-motion: reduce) {
   .hero-rise { animation: none; }
 }
+
+/* El cursor custom solo donde hay un puntero fino que reemplazar.
+   Antes `cursor-none` estaba fijo en el <body>: en touch no molesta pero en
+   desktop, si el JS no cargaba, el usuario se quedaba sin puntero. */
+@media (hover: hover) and (pointer: fine) {
+  body { cursor: none; }
+}
